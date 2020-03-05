@@ -1,12 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
+import MyInfo from "./components/MyInfo";
+import Header from "./components/Header";
+import MainContent from "./components/MainContent";
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1> New App </h1>
-      <h2> AHHHHHHH</h2>
+      <Header/>
+      <MainContent/>
     </div>
   );
 }
