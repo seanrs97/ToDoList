@@ -1,0 +1,25 @@
+.container-of-content{
+
+}
+.content-block{
+    display: grid;
+    grid-template-areas: "content-text content-image";
+    grid-template-columns: repeat(2, 1fr);
+    width: 80%;
+    grid-gap: 100px;
+    margin: 0 auto;
+    min-height: 20vh;
+    max-height: 50vh;
+    padding: 40px 0;
+}
+.content-para{
+    grid-area: content-text
+}
+.content-image{
+    grid-area: content-image;
+}
+
+.container-of-content:nth-of-type(even) .content-block{
+    grid-template-areas: "content-image content-text";
+    padding: 40px 0;
+}

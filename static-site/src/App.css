@@ -1,38 +1,199 @@
-.App {
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+html{
+  margin: 0;
+  padding: 0;
+}
+h1,h2,h3,h4,h5,p{
+  margin: 0;
+}
+h1{
+  font-size: 3.5em;
+}
+h2{
+  font-size: 2.8em;
+}
+h3{
+  font-size: 2.2em;
+}
+h4{
+  font-size: 1.8em;
+}
+h5{
+  font-size: 1.3em;
+}
+header{
+  background: black;
+  color: white;
+}
+.header-content{
+  width: 80%;
+  margin: 0 auto;
+  padding-left: 25px;
+  display: grid;
+  grid-template-areas: "left-nav left-nav left-nav right-nav right-nav";
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 20px;
+  position: relative;
+}
+.left-nav{
+  height: 80px;
+  width: 250px;
+  filter: invert(100%) sepia(103%) saturate(12%) hue-rotate(87deg) brightness(1009%) contrast(100%);
+  grid-area: left-nav;
+}
+.right-nav{
+  grid-area: right-nav;
+  position: absolute;
+  right: 0;
+}
+.right-nav img{
+  height: 70px;
+  width: 70px;
+  padding: 0 10px;
+}
+.login-page{
+  height: 100vh !important;
+  background: url("images/login-background.png");
+}
+.content-wrapper-login{
+  width: 28%;
+  float: right;
+  margin-top: 40px;
+  margin-right: 40px;
+
+}
+.login{
+  padding: 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  margin-top: 40px;
+}
+.future-proof{
+  color: white;
+}
+.login input{
+  width: 90%;
+  border-radius: 10px;
+  border: none;
+  height: 40px;
+  margin: 10px 0;
+  background: rgba(25,25,25,0.3)
+}
+.g-signin2 .abcRioButton{
+  height: 200px;
+}
+.abcRioButton{
+  width: 90% !important;
+  padding-bottom: 10px !important;
+  margin: 0 auto !important;
+}
+.abcRioButtonContents{
+  font-size: 1.3em !important;
+}
+.no-account{
+  padding-top: 20px;
+}
+.background{
+  background: rgb(177, 167, 167, 0.3)
+}
+.main-content{
+  width: 80%;
+  margin: 0 auto;
+  background: white;
+  padding-left: 25px
+}
+.main-content h1{
+  padding-top: 100px;
+  font-size: 5em;
+  padding-bottom: 100px;
+}
+.meaning{
+  padding: 20px 0;
+  font-size: 1.5em;
+}
+.badgesContainer{
+  display: grid;
+  grid-template-areas: "badges badges get-start get-start";
+  padding: 100px 0;
+}
+.badges{
+  grid-area: badges;
+}
+.badges img{
+  height: 100px;
+  width: 100px;
+  padding: 0 20px;
+}
+.gettingStarted{
+  grid-area: get-start;
+}
+.gettingStarted button{
+  border: 8px solid black;
+  background: grey;
+  padding: 10px 80px;
+  border-radius: 20px;
+  color: white;
+  margin-top: 30px;
+  font-size: 1.4em;
+  font-weight: 800;
+}
+.topicChoice{
+  display: grid;
+  grid-template-areas: "blue-badge red-badge orange-badge green-badge";
+}
+.topicChoice img{
+  height: 200px;
+  width: 200px;
+}
+.blue-badge{
+  grid-area: blue-badge;
+}
+.green-badge{
+  grid-area: green-badge;
+}
+.red-badge{
+  grid-area: red-badge;
+}
+.orange-badge{
+  grid-area: orange-badge;
+}
+.linkContainer{
+  padding-top: 40px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.headerContainer{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-areas: "left-code left-code left-code left-code left-code left-code right-code";
+  background: #3b3838;
+  height: 25vh;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  width: 80%;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.headerImageLeft{
+  grid-area: left-code;
+  height: 180px;
+  filter: invert(100%) sepia(103%) saturate(12%) hue-rotate(87deg) brightness(1009%) contrast(100%);
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.header-title{
+  grid-area: code-h3;
   color: white;
+  text-align: center;
+  font-weight: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%, -50%);
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.headerImageRight{
+  grid-area: right-code;
+  float: right;
+  height:180px;
+  filter: invert(100%) sepia(103%) saturate(12%) hue-rotate(87deg) brightness(1009%) contrast(100%);
 }
