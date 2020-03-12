@@ -1,6 +1,4 @@
-.container-of-content{
 
-}
 .content-block{
     display: grid;
     grid-template-areas: "content-text content-image";

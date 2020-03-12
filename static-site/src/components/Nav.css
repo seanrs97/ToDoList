@@ -1,0 +1,30 @@
+header{
+    background: black;
+    color: white;
+  }
+  .header-content{
+    width: 80%;
+    margin: 0 auto;
+    padding-left: 25px;
+    display: grid;
+    grid-template-areas: "left-nav left-nav left-nav right-nav right-nav";
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+    position: relative;
+  }
+  .left-nav{
+    height: 80px;
+    width: 250px;
+    filter: invert(100%) sepia(103%) saturate(12%) hue-rotate(87deg) brightness(1009%) contrast(100%);
+    grid-area: left-nav;
+  }
+  .right-nav{
+    grid-area: right-nav;
+    position: absolute;
+    right: 0;
+  }
+  .right-nav img{
+    height: 70px;
+    width: 70px;
+    padding: 0 10px;
+  }

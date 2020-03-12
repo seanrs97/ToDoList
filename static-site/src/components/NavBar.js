@@ -6,6 +6,8 @@ import GreenBadge from "../images/BadgeGreen.svg";
 import BlueBadge from "../images/BadgeBlue.svg";
 import OrangeBadge from "../images/BadgeOrange.svg";
 
+import "./Nav.css";
+
 const NavBar = () => {
     return (
         <header>

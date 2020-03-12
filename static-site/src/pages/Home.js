@@ -6,6 +6,8 @@ import BadgeGreen from "../images/BadgeGreen.svg";
 import BadgeRed from "../images/BadgeRed.svg";
 import BadgeOrange from "../images/BadgeOrange.svg";
 
+import "./Pages.css";
+
 import {Link} from "react-router-dom";
 
 

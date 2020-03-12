@@ -1,0 +1,32 @@
+.headerContainer{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-areas: "left-code left-code left-code left-code left-code left-code right-code";
+    background: #3b3838;
+    height: 25vh;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    width: 80%;
+  }
+  .headerImageLeft{
+    grid-area: left-code;
+    height: 180px;
+    filter: invert(100%) sepia(103%) saturate(12%) hue-rotate(87deg) brightness(1009%) contrast(100%);
+  }
+  .header-title{
+    grid-area: code-h3;
+    color: white;
+    text-align: center;
+    font-weight: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+  }
+  .headerImageRight{
+    grid-area: right-code;
+    float: right;
+    height:180px;
+    filter: invert(100%) sepia(103%) saturate(12%) hue-rotate(87deg) brightness(1009%) contrast(100%);
+  }

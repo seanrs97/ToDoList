@@ -1,0 +1,21 @@
+.container{
+    height: 50vh;
+    color: black;
+    margin: 0 auto;
+}
+.container p{
+    font-size: 1.4em;
+}
+.himg{
+    height:100vh;
+}
+.himg2{
+    height:100vh;
+}
+.container img{
+    width: 100%;
+    height: 70vh;
+}
+.topicHeaderImage{
+    height: 50vh;
+}

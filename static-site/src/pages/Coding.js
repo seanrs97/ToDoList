@@ -18,6 +18,10 @@ import other from "../images/topics/other.svg";
 
 import ContentPage from "../content-pages/ContentPage";
 import IndividualTopic from "../TopicLandingPages/IndividualTopic";
+
+import "./Pages.css";
+
+
 const Coding = () => {
     return (
         <div>
