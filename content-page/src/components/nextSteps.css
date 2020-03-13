@@ -1,0 +1,23 @@
+.nextStepsContainer{
+    width: 90%;
+    margin: 0 auto;
+}
+.navigationContainer{
+    display: grid;
+    grid-template-areas: "prev mid next";
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    margin-top: 70px;
+    margin-bottom: 20px;
+}
+.navigationContainer div{
+    text-align: center;
+    background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    padding: 20px;
+    font-weight: 600;
+    font-size: 1.5em;
+    color: white;
+    border-radius: 40px;
+    cursor: pointer;
+    border: 8px solid blue;
+}

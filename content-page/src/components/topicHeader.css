@@ -1,7 +1,11 @@
-.container{
-    height: 50vh;
+.headerContainer{
     color: black;
     margin: 0 auto;
+}
+.titleTextContainer{
+    width: 92%;
+    margin: 0 auto;
+    padding-bottom: 3%;
 }
 .container p{
     font-size: 1.4em;
@@ -18,4 +22,28 @@
 }
 .topicHeaderImage{
     height: 50vh;
+}
+
+/* Tablet Style */
+@media only screen and (max-width: 770px){
+    p{
+        font-size: 1.2em;
+    }
+     h1{
+        font-size: 3em;
+    }
+    .imageOne{
+        height: 50vh !important; 
+    }
+    .imageTwo{
+        height: 30vh !important;
+    }
+}
+@media only screen and (max-width: 414px){
+    .imageOne{
+        display: none;
+    }
+    .imageTwo{
+        height: 70vh !important;
+    }
 }

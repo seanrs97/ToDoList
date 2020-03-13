@@ -1,14 +1,11 @@
 import React from 'react';
 import './App.css';
-import TopicHeader from "./components/TopicHeader";
+import Coding from "./mainPages/Coding";
 
 function App() {
   return (
     <div className="App">
-      <TopicHeader 
-        title = "Coding & Programming" 
-        imageOne = "3d-model" 
-        imageTwo = "3d-model-labeled"/>
+      <Coding/>
     </div>
   );
 }

@@ -1,0 +1,27 @@
+.mainContentContainer{
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "grid-para grid-img";
+    grid-gap: 50px;
+    margin: 0 auto;
+    padding: 50px 0;
+    position: relative;
+    min-height: 30vh;
+}
+.mainContentContainer:nth-of-type(even){
+    grid-template-areas: "grid-img grid-para";
+    min-height: 30vh;
+}
+.mainContentP{
+    grid-area: grid-para;
+    line-height: 1.5em;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.mainContentImg{
+    grid-area: grid-img;
+    position: absolute;
+    right: 25%;
+}
