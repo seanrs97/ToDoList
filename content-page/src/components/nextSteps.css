@@ -1,5 +1,5 @@
 .nextStepsContainer{
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
 }
 .navigationContainer{
@@ -9,15 +9,40 @@
     width: 100%;
     margin-top: 70px;
     margin-bottom: 20px;
+    grid-gap: 10%;
 }
 .navigationContainer div{
     text-align: center;
-    background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    background: linear-gradient(to bottom, #2193b0, #6dd5ed); 
     padding: 20px;
     font-weight: 600;
     font-size: 1.5em;
     color: white;
-    border-radius: 40px;
+    border-radius: 10px;
     cursor: pointer;
-    border: 8px solid blue;
+}
+@media only screen and (max-width: 560px){
+    .nextStepsHeader{
+        text-align: center;
+    }
+    .nextStepsContainer{
+        width: 100%;
+        overflow: hidden;
+        font-size: 1.2em;
+    }
+    .navigationContainer{
+        grid-gap: 0;
+        margin-bottom: 0;
+    }
+    .navigationContainer div{
+        border-radius: 0;
+        border-left: 1px solid white;
+        border-right: 1px solid white;
+        padding: 30px;
+    }
+}
+@media only screen and (max-width: 400px){
+    .nextStepsContainer{
+        font-size: 1em;
+    }
 }

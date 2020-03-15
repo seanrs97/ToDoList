@@ -19,9 +19,57 @@
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+    font-size: 1.2em;
 }
 .mainContentImg{
     grid-area: grid-img;
     position: absolute;
     right: 25%;
+}
+@media only screen and (max-width: 770px){
+    .mainContentContainer{
+        grid-gap: 5px;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas: "grid-para grid-para grid-img" !important;
+    }
+    .mainContentContainer:nth-of-type(even){
+        grid-template-areas: "grid-img grid-para grid-para" !important;
+        min-height: 30vh;
+    }
+    .mainContentImg{
+        width: 80%;
+        right: 0;
+    }
+    .mainContentContainer:nth-of-type(even) .mainContentImg{
+        left: 0;
+    }
+}
+@media only screen and (max-width: 420px){
+    .mainContentContainer{
+        width: 95%;
+        display: block !important;
+        margin: 0 auto;
+        text-align: center;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-areas: "grid-img grid-para" !important;
+    }
+    .mainContentContainer:nth-of-type(even){
+        grid-template-areas: "grid-img grid-para" !important;
+    }
+    .mainContentImg{
+        width: 70%;
+        position: initial;
+        text-align: center;
+        margin: 0 auto;
+        padding-bottom: 50px;
+    }
+    .mainContentP{
+        top: 0;
+        transform: translateY(0);
+        padding-bottom: 100px;
+    }
+    .mainContentContainer:nth-of-type(even) .mainContentImg{
+        
+    }
 }

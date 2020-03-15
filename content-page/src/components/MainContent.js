@@ -4,8 +4,8 @@ import styles from "./mainContent.css";
 const MainContent = props => {
     return (
         <div className = "mainContentContainer">
-            <p className = "mainContentP">{props.p}</p>
             <img className = "mainContentImg" src = {imageSourceOne + `${props.srcName}` + "." + `${props.srcType}`}/>
+            <p className = "mainContentP">{props.p}</p>
         </div>
     );
 }
