@@ -9,10 +9,10 @@ const NextSteps = props => {
             <div className = "navigationContainer">
                 <div className = "prevButton"> Prev </div>
                 <div className = "midButton"> Change </div>
-                <div className = "nextButton"> Next </div>
+                <div className = "nextButton"> <a href = ""/> </div>
             </div>
         </div>
-    )
+    )  
 }
 
 export default NextSteps;
