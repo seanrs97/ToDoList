@@ -1,0 +1,33 @@
+import React from "react";
+import TopicHeader from "../components/TopicHeader";
+import MainContent from "../components/MainContent";
+
+const AppDevFundamentals = () => {
+    return (
+        <div>
+            <TopicHeader
+                title = "App Development Fundamentals"
+                imageOne = "appDev"
+                imageTwo = "appDev2"
+            />
+            <MainContent
+                srcName = "appDev1"
+                srcType = "svg"
+                p = "Ullamco incididunt veni
+                am duis dolore exercitation aute cillum vel
+                it. Mollit eiusmod ex magna officia mollit aute ad
+                magna do. Culpa deserunt consequat mollit dolor minim nostrud in velit mollit do qui dolore tempor."
+            />
+            <MainContent
+                srcName = "appDev2"
+                srcType = "svg"
+                p = "Ullamco incididunt veni
+                am duis dolore exercitation aute cillum vel
+                it. Mollit eiusmod ex magna officia mollit aute ad
+                magna do. Culpa deserunt consequat mollit dolor minim nostrud in velit mollit do qui dolore tempor."
+            />
+        </div>
+    )
+}
+
+export default AppDevFundamentals;

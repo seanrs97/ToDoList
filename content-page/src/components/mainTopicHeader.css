@@ -1,0 +1,79 @@
+.mainTopicHeaderContainer{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "topicHeaderText topicHeaderText topicHeaderText topicHeaderImage";
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+.mainTopicTextContainer{
+    grid-area: topicHeaderText;
+}
+.headerImageSmall{
+    display: none;
+}
+.mainTopicTextContainer h1{
+    font-size: 4.4em;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding-bottom: 25px;
+}
+.mainTopicTextContainer p{
+    font-size: 1.2em;
+}
+.mainTopicImageContainer{
+    grid-area: topicHeaderImage;
+}
+.mainTopicImageContainer img{
+    width: 180px;
+    height: auto;
+}
+@media only screen and (max-width: 580px){
+    .mainTopicHeaderContainer{
+        display: block !important;
+    }
+    .smallImageTextContainer{
+        display: grid;
+        grid-template-areas: "topicH1 topicSmallImg";
+        width: 95%;
+        margin: 0 auto;
+    }
+    .mainTopicTextContainer h1{
+        width: 100%;
+        grid-area: topicH1;
+        text-align: left;
+    }
+    .headerImageSmall{
+        display: block;
+        width: 80px;
+        height: auto; 
+        grid-area: topicSmallImg;
+    }
+    .nounContainer{
+        width: 92%;
+        margin: 0 auto;
+    }
+    .mainTopicImageContainer{
+        display: none;
+    }
+}
+@media only screen and (max-width: 450px){
+    .mainTopicTextContainer h1{
+        font-size: 3.4em;
+    }
+    .smallImageTextContainer{
+        width: 100%;
+    }
+    .headerImageSmall{
+        width: 70px;
+    }
+    .nounContainer{
+        width: 100%;
+    }
+    .nounContainer h4{
+        font-size: 1.8em;
+    }
+    .nounContainer p{
+        font-size: 1em;
+    }
+}

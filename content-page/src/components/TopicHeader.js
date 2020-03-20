@@ -18,7 +18,7 @@ const TopicHeader = props => {
             </div>
             <div className = "imageOne"
             style = {{
-                backgroundImage: "url(/images/" + `${props.imageOne}` + '.svg' + ")",
+                backgroundImage: "url(/images/headerImages/" + `${props.imageOne}` + '.svg' + ")",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
                 backgroundAttachment: "fixed",
@@ -27,7 +27,7 @@ const TopicHeader = props => {
                 }}></div>
             <div className = "imageTwo" 
             style = {{
-                backgroundImage: "url(/images/" + `${props.imageTwo}` + '.svg' + ")",
+                backgroundImage: "url(/images/headerImages/" + `${props.imageTwo}` + '.svg' + ")",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
                 backgroundAttachment: "fixed",

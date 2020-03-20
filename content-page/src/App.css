@@ -2,6 +2,15 @@
   margin: 0;
   padding: 0;
 }
+.App{
+  background: #e0e0e0;
+}
+.content{
+  background: white;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
 h1,h2,h3,h4,h5,h6,p{
   margin: 0;
   padding: 0;
@@ -21,4 +30,26 @@ h4{
 }
 h5{
   font-size: 1.6em;
+}
+@media only screen and (max-width: 770px){
+  .content{
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 500px){
+  .getStarted{
+    font-size: 2em;
+  }
+  .badgesContainer{
+    display: block !important;
+  }
+  .badgesContainer img{
+    width: 52% !important;
+    padding: 30px 0;
+  }
+}
+@media only screen and (min-width: 900px){
+  .futureProofLogo{
+    width: 56% !important;
+  }
 }

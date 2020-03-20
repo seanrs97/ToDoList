@@ -1,53 +1,64 @@
 import React from "react";
-import TopicHeader from "../components/TopicHeader";
-import MainContent from "../components/MainContent";
-import NextSteps from "../components/NextSteps";
+import MainTopicHeader from "../components/MainTopicHeader";
 
-import {BrowserRouter, Route} from "react-router-dom";
+
+import {BrowserRouter, Route, Link} from "react-router-dom";
+import MainTopicItem from "../components/MainTopicItem";
+
 
 const Coding = () => {
     return( 
         <div>
-        <TopicHeader 
-        headerColour = "blue"
-        title = "Coding & Programming" 
-        imageOne = "3d-model" 
-        imageTwo = "3d-model-labeled"/>
-        <MainContent
-         p = "Nostrud ut deserunt nisi est sit do. Nisi labore culpa ad excepteur 
-         ipsum qui. Sit quis deserunt sint in aliquip incididunt aliqua
-         Lorem quis Lorem cupidatat incididunt. Irure laborum est consectetur nulla dolore.
-         Ex pariatur laborum Lorem quis officia aute et. Commodo voluptate laboris nostrud voluptate pariatur
-         qui in aute nisi elit ea et. Fugiat enim laborum incididunt aliquip in ea proident exercitation.
-         eserunt sint in aliquip incididunt aliqua
-         Lorem quis Lorem cupidatat incididunt. Irure laborum est consectetur nulla dolore.
-         Ex pariatur laborum Lorem quis ofeserunt sint in aliquip incididunt aliqua
-         Lorem quis Lorem cupidatat incididunt. Irure laborum est consectetur nulla dolore.
-         Ex pariatur laborum Lorem quis ofeserunt sint in aliquip incididunt aliqua
-         Lorem quis Lorem cupidatat incididunt. Irure laborum est consectetur nulla dolore.
-         Ex pariatur laborum Lorem quis ofeserunt sint in aliquip incididunt aliqua
-         Lorem quis Lorem cupidatat incididunt. Irure laborum est consectetur nulla dolore.
-         Ex pariatur laborum Lorem quis of "
-        srcName = "BadgeRed"
-        srcType = "svg"
-        />
-        <MainContent
-        p = "Nostrud ut deserunt nisi est sit do. Nisi labore culpa ad excepteur 
-        ipsum qui. Sit quis deserunt sint in aliquip incididunt aliqua
-        Lorem quis Lorem cupidatat incididunt. Irure laborum est consectetur nulla dolore.
-        Ex pariatur laborum Lorem quis officia aute et. Commodo voluptate laboris nostrud voluptate pariatur
-        qui in aute nisi elit ea et. Fugiat enim laborum incididunt aliquip in ea proident exercitation."
-        srcName = "BadgeGreen"
-        srcType = "svg"
-        />
-        <MainContent
-        p = "Nostrud ut deserunt nisi est sit do. Nisi labore culpa ad excepteur 
-        ipsum qu et. Commodo voluptate laboris nostrud voluptate pariatur
-        qui in aute nisi elit ea et. Fugiat enim laborum incididunt aliquip in ea proident exercitation."
-        srcName = "BadgeGreen"
-        srcType = "svg"
-        />
-        <NextSteps/>
+            <MainTopicHeader
+            headerColour = "blue"
+            mainText = "Coding"
+            nounText = "The process of creating computer programming code"
+            badgeName = "BadgeBlue"
+            badgeSrc = "svg"/>
+
+            <MainTopicItem
+            link = "codeIntro"
+            srcName = "intro"
+            srcType = "svg"
+            contentText = "An Introduction to what code is, what it can be 
+            used for and why it's an important skill for the future"
+            shortText = "Introduction to Coding"
+            />
+            <MainTopicItem
+            link = "robotics"
+            srcName = "robotics"
+            srcType = "svg"
+            contentText = "Dive into the world of robotics and learn the science behind what makes some of the worlds most powerful robots"
+            shortText = "Introduction"
+            />
+            <MainTopicItem
+            link = "ai"
+            srcName = "ai"
+            srcType = "svg"
+            contentText = "AI! Something most of us encounter everyday but do you know how any of it works? Find out here!"
+            shortText = "Robotics"
+            />
+            <MainTopicItem
+            link = "web"
+            srcName = "web"
+            srcType = "svg"
+            contentText = "You've used them hundreds of time, now it's time to learn how websites are built!"
+            shortText = "Web"
+            />
+            <MainTopicItem
+            link = "gameDev"
+            srcName = "games"
+            srcType = "svg"
+            contentText = "Ever played a video game and wondered exactly what is going on behind the screen? well now you can!"
+            shortText = "Game Development"
+            />
+            <MainTopicItem
+            link = "appDev"
+            srcName = "apps"
+            srcType = "svg"
+            contentText = "Facebook, Twitter, Instagram and Uber! if you've used these, then you've already got an idea of what app dev is!"
+            shortText = "App Development"
+            />
         </div>
     )
 }

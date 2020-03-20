@@ -21,10 +21,9 @@
     transform: translateY(-50%);
     font-size: 1.2em;
 }
-.mainContentImg{
+.mainSubContentImg{
     grid-area: grid-img;
-    position: absolute;
-    right: 25%;
+
 }
 @media only screen and (max-width: 770px){
     .mainContentContainer{
@@ -36,15 +35,15 @@
         grid-template-areas: "grid-img grid-para grid-para" !important;
         min-height: 30vh;
     }
-    .mainContentImg{
-        width: 80%;
+    .mainSubContentImg{
+        width: 100%;
         right: 0;
     }
     .mainContentContainer:nth-of-type(even) .mainContentImg{
         left: 0;
     }
 }
-@media only screen and (max-width: 420px){
+@media only screen and (max-width: 480px){
     .mainContentContainer{
         width: 95%;
         display: block !important;
@@ -57,7 +56,7 @@
     .mainContentContainer:nth-of-type(even){
         grid-template-areas: "grid-img grid-para" !important;
     }
-    .mainContentImg{
+    .mainSubContentImg{
         width: 70%;
         position: initial;
         text-align: center;
