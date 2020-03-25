@@ -10,7 +10,7 @@ const Coding = () => {
     return( 
         <div>
             <MainTopicHeader
-            headerColour = "blue"
+            headerColour = "linear-gradient(90deg, rgba(0,178,237,1) 0%, rgba(29,113,184,1) 100%)"
             mainText = "Coding"
             nounText = "The process of creating computer programming code"
             badgeName = "BadgeBlue"

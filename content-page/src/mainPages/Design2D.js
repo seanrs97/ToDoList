@@ -8,7 +8,7 @@ const Design2D = props => {
     return (
         <div>
             <MainTopicHeader
-             headerColour = "red"
+             headerColour = "linear-gradient(90deg, #fb1842 , #d00056)"
              mainText = "2D Design"
              nounText = "(of a work of art) having its elements organized in 
              terms of a flat surface, especially emphasizing the vertical and horizontal character of the picture plane"

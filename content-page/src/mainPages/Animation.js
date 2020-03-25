@@ -6,7 +6,7 @@ const Animation = props => {
     return (
         <div>
             <MainTopicHeader
-             headerColour = "orange"
+             headerColour = "linear-gradient(90deg, #ffd32b , #f39200)"
              mainText = "Animation"
              nounText = "The process of making films, videos and computer games in which drawings, models or images of people and animals seem to move"
              badgeName = "BadgeOrange"

@@ -6,7 +6,7 @@ const ProblemSolving = () => {
     return (
         <div>
             <TopicHeader
-                headerColour = "blue"
+                headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
                 title = "ProblemSolving"
                 imageOne = "ai"
                 imageTwo = "ai2"

@@ -7,7 +7,7 @@ const Robotics = props => {
     return (
         <div>
             <MainTopicHeader
-            headerColour = "blue"
+            headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
             mainText = "Robotics"
             nounText = "Game Development is the art of creating games 
             and describes the design, development and release of a game.

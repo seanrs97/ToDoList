@@ -8,7 +8,7 @@ const AI = props => {
     return (
         <div>
             <MainTopicHeader
-            headerColour = "blue"
+            headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
             mainText = "Artificial Intelligence (AI)"
             nounText = "the capacity of a computer to perform operations analogous to learning and 
             decision making in humans, as by an expert system, a program for CAD or CAM, or a 

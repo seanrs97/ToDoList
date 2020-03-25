@@ -6,7 +6,7 @@
     margin: 0 auto;
     background: black;
     color: white;
-    width: 90%;
+    width: 74%;
     display: grid;
     grid-template-areas: "grid-img grid-img grid-img grid-img grid-img grid-img grid-list grid-list";
 }

@@ -8,7 +8,7 @@ const WebBuilder = props => {
     return (
         <div>
             <TopicHeader
-                headerColour = "blue"
+                headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
                 title = "Web Builder"
                 imageOne = "ai"
                 imageTwo = "ai2"

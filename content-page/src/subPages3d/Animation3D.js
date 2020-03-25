@@ -8,7 +8,7 @@ const Animation3D = props => {
     return (
         <div>
             <MainTopicHeader
-            headerColour = "green"
+            headerColour = "linear-gradient(90deg, #57b28e , #3c9d52)"
             mainText = "3D Animation"
             nounText = "3D Animation is a method of utilising 
             cutting edge software and computer processing power to produce stunning shots for all types of film and media. "

@@ -8,7 +8,7 @@ const Modelling3D = props => {
     return (
         <div>
             <MainTopicHeader
-            headerColour = "green"
+            headerColour = "linear-gradient(90deg, #57b28e , #3c9d52)"
             mainText = "3D Modelling"
             nounText = "3D modeling is a technique in computer graphics for producing 
             a 3D digital representation of any object or surface."

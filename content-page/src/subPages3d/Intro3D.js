@@ -7,7 +7,7 @@ const Intro3D = props => {
     return (
         <div>
             <TopicHeader
-                headerColour = "green"
+                headerColour = "linear-gradient(90deg, #57b28e , #3c9d52)"
                 title = "3D Design"
                 imageOne = "coding"
                 imageTwo = "coding2"

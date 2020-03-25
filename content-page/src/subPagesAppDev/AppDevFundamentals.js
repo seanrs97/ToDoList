@@ -6,6 +6,7 @@ const AppDevFundamentals = () => {
     return (
         <div>
             <TopicHeader
+                headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
                 title = "App Development Fundamentals"
                 imageOne = "appDev"
                 imageTwo = "appDev2"

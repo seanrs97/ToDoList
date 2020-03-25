@@ -7,7 +7,7 @@ const IntroAnimation = props => {
     return (
         <div>
             <TopicHeader
-                headerColour = "orange"
+                headerColour = "linear-gradient(90deg, #ffd32b , #f39200)"
                 title = "Animation"
                 imageOne = "coding"
                 imageTwo = "coding2"

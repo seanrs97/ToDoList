@@ -7,7 +7,7 @@ const AppDev = props => {
     return (
         <div>
            <MainTopicHeader
-            headerColour = "blue"
+            headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
             mainText = "Application Development"
             nounText = "Mobile app development is the act or process by which a 
             mobile app is developed for mobile devices, such as personal digital assistants, 

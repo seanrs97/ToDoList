@@ -8,7 +8,7 @@ const Careers3D = props => {
     return (
         <div>
             <MainTopicHeader
-            headerColour = "green"
+            headerColour = "linear-gradient(90deg, #57b28e , #3c9d52)"
             mainText = "Careers in 3D"
             nounText = "An occupation or profession, especially one requiring special training, followed as one's lifework"
             badgeName = "BadgeGreen"

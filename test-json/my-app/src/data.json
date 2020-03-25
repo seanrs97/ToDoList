@@ -1,0 +1,45 @@
+[
+    {   
+        "codingData": {
+            "name": "code",
+            "id": 100,
+            "imageSrc": "/logo512.png",
+            "webData": {
+                "name": "web",
+                "id": 1,
+                "imageSrc": "/logo192.png"
+            },
+            "roboticsData": {
+                "name": "robotics",
+                "id": 2
+            },
+            "aiData": {
+                "name": "Art Intel",
+                "id": 3
+            },
+            "gamesData": {
+                "name": "Games Dev",
+                "id": 4
+            },
+            "appData": {
+                "name": "App Dev",
+                "id": 5
+            }
+        }
+    },
+    {
+        "3dData": {
+
+        }
+    },
+    {
+        "2dData": {
+
+        }
+    },
+    {
+        "animationData": {
+
+        }
+    }
+]

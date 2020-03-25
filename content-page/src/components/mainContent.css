@@ -8,10 +8,14 @@
     padding: 50px 0;
     position: relative;
     min-height: 30vh;
+    overflow: hidden;
 }
 .mainContentContainer:nth-of-type(even){
     grid-template-areas: "grid-img grid-para";
     min-height: 30vh;
+}
+.red{
+    background: red;
 }
 .mainContentP{
     grid-area: grid-para;
@@ -23,7 +27,22 @@
 }
 .mainSubContentImg{
     grid-area: grid-img;
-
+}
+@keyframes animateLeft{
+    from {
+        left: -100%
+    }
+    to {
+        left: 0;
+    }
+}
+@keyframes animateRight{
+    from {
+        right: -100%;
+    }
+    to {
+        right: 0;
+    }
 }
 @media only screen and (max-width: 770px){
     .mainContentContainer{
@@ -67,8 +86,5 @@
         top: 0;
         transform: translateY(0);
         padding-bottom: 100px;
-    }
-    .mainContentContainer:nth-of-type(even) .mainContentImg{
-        
     }
 }

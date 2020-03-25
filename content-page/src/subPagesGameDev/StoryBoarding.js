@@ -6,6 +6,7 @@ const StoryBoarding = () => {
     return (
         <div>
             <TopicHeader
+                headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
                 title = "StoryBoarding"
                 imageOne = "coding"
                 imageTwo = "coding2"

@@ -1,6 +1,5 @@
-import React, {Component } from 'react';
+import React, {Component , useRef} from 'react';
 import './App.css';
-
 /* MAIN PAGES */
 import Coding from "./mainPages/Coding";
 import Animation from "./mainPages/Animation";
@@ -58,7 +57,6 @@ import IntroAnimation from "./subPagesAnimation/IntroAnimation";
 import NavBar from "./components/NavBar";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
-
 class App extends Component{
   constructor(props){
     super(props);
@@ -114,5 +112,82 @@ class App extends Component{
     );
   }
 }
+
+/*const Homo = () => {
+  const sectionRef = React.useRef(null);
+
+  const intersection = useIntersection(sectionRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.5
+  });
+
+  const fadeIn = element => {
+    gsap.to(element, 1, {
+      opacity: 1,
+      y: -60,
+      ease: "power4.out",
+      stagger: {
+        amount: 0.3
+      }
+    });
+  }
+  const fadeOut = element => {
+    gsap.to(element, 1, {
+      opacity: 0,
+      y: -20,
+      ease: "power4.out",
+    });
+  }
+  intersection && intersection.intersectionRatio < 0.5
+    ? fadeOut(".fadeIn")
+    : fadeIn(".fadeIn");
+
+  return (
+    <div>
+      <div className = "theHeader">
+        <button> THIS IS A BUTTON </button>
+      </div>
+      <div className = "sectionFirst">
+        <div className = "pic">
+          <img src = "./images/topics/ai.svg"/>
+        </div>
+        <h3> TITLE TEXT </h3>
+        <p> Non ad proident minim sint adipisicing eu ut. 
+          Nisi nisi consequat eu non. Quis tempor duis reprehender
+          it laboris consectetur sit exercitation anim. Minim cillu
+          m ipsum aliqua aute reprehenderit elit labore dolor ut 
+          Lorem mollit excepteur qui. Nisi esse ullamco elit minim
+          minim ua aute reprehenderit elit labore dolor ut 
+            Lorem mollit excepteur qui. Nisi esse ullamco elit minim
+            minim Lorem. Sunt labore excepteur non ipsum in officia 
+            elit dolore sunt veniam excepteur.Lorem. Sunt labore excepteur non ipsum in officia 
+          elit dolore sunt veniam excepteur.ua aute reprehenderit elit labore dolor ut 
+            Lorem mollit excepteur qui. Nisi esse ullamco elit minim
+            minim Lorem. Sunt labore excepteur non ipsum in officia 
+            elit dolore sunt veniam excepteur.</p>
+      </div>
+      <div ref = {sectionRef} className = "sectionSecond">
+        <div className = "pic">
+            <img src = "./images/topics/ai.svg"/>
+          </div>
+          <h3 className = "fadeIn"> TITLE TEXT </h3>
+          <p className = "fadeIn"> Non ad proident minim sint adipisicing eu ut. 
+            Nisi nisi consequat eu non. Quis tempor duis reprehender
+            it laboris consectetur sit exercitation anim. Minim cillu
+            m ipsum aliqua aute reprehenderit elit labore dolor ut 
+            Lorem mollit excepteur qui. Nisi esse ullamco elit minim
+            minim Lorem. Sunt labore excepteur non ipsum in officia 
+            elit dolore sunt veniam excepteur.ua aute reprehenderit elit labore dolor ut 
+            Lorem mollit excepteur qui. Nisi esse ullamco elit minim
+            minim Lorem. Sunt labore excepteur non ipsum in officia 
+            elit dolore sunt veniam excepteur.ua aute reprehenderit elit labore dolor ut 
+            Lorem mollit excepteur qui. Nisi esse ullamco elit minim
+            minim Lorem. Sunt labore excepteur non ipsum in officia 
+            elit dolore sunt veniam excepteur.</p>
+        </div>
+    </div>
+  )
+}*/
 
 export default App;

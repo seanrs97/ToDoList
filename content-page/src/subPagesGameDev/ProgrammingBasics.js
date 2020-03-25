@@ -6,6 +6,7 @@ const ProgrammingBasics = () => {
     return (
         <div>
             <TopicHeader
+                headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
                 title = "Programming Basics"
                 imageOne = "coding"
                 imageTwo = "coding2"

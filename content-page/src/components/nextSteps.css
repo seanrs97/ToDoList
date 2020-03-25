@@ -2,6 +2,9 @@
     width: 100%;
     text-align: center;
 }
+.nextStepsHeader{
+    font-family: "Open sans", sans-serif;
+}
 .navigationContainer{
     width: 40%;
     margin: 0 auto;
@@ -14,8 +17,16 @@
     font-size: 2em;
     color: black;
 }
+@media only screen and (max-width: 800px){
+    .navigationContainer{
+        width: 60%;
+    }
+}
 @media only screen and (max-width: 500px){
     .navigationContainer{
         width: 70%;
+    }
+    .prevButton{
+        font-size: 1.2em;
     }
 }

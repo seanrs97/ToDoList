@@ -8,7 +8,7 @@ const Software3D = props => {
     return (
         <div>
             <MainTopicHeader
-            headerColour = "green"
+            headerColour = "linear-gradient(90deg, #57b28e , #3c9d52)"
             mainText = "3D Software"
             nounText = "Computer programs used for developing a mathematical 
             representation of any three-dimensional surface of objects, also called 3D modeling."

@@ -6,7 +6,7 @@ const Industrial = props => {
     return (
         <div>
             <TopicHeader
-                headerColour = "blue"
+                headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
                 title = "Industrial Robotics"
                 imageOne = "ai"
                 imageTwo = "ai2"

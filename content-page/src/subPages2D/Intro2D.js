@@ -7,7 +7,7 @@ const Intro2D = props => {
     return (
         <div>
             <TopicHeader
-                headerColour = "red"
+                headerColour = "linear-gradient(90deg, #fb1842 , #d00056)"
                 title = "2D Design"
                 imageOne = "coding"
                 imageTwo = "coding2"

@@ -6,7 +6,7 @@ import styles from "./nextSteps.css";
 const NextSteps = props => {
     return (
         <div className = "nextStepsContainer">
-            <h1 className = "nextStepsHeader"> What now? </h1>
+            <h3 className = "nextStepsHeader"> What now? </h3>
             <div className = "navigationContainer">
             <Link 
                 style = {{textDecoration: "none"}}

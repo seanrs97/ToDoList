@@ -6,6 +6,7 @@ const Java = () => {
     return (
         <div>
             <TopicHeader
+                headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
                 title = "Java"
                 imageOne = "coding"
                 imageTwo = "coding2"

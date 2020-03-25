@@ -8,7 +8,7 @@ const CMS = props => {
     return (
         <div>
             <TopicHeader
-                headerColour = "blue"
+                headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
                 title = "CMS (Content Management System)"
                 imageOne = "ai"
                 imageTwo = "ai2"

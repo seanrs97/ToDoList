@@ -6,7 +6,7 @@ const Design3D = props => {
     return (
         <div>
             <MainTopicHeader
-             headerColour = "green"
+             headerColour = "linear-gradient(90deg, #57b28e , #3c9d52)"
              mainText = "3D Design"
              nounText = "The creation of a three-dimensional object from a digital file using a device 
              that adds successive layers of material to make the object"

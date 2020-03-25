@@ -1,19 +1,20 @@
 .mainTopicHeaderContainer{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-areas: "topicHeaderText topicHeaderText topicHeaderText topicHeaderImage";
-    width: 95%;
+    grid-template-areas: "topicHeaderText topicHeaderText topicHeaderText topicHeaderText";
+    width: 87.5%;
     margin: 0 auto;
     padding-top: 40px;
 }
 .mainTopicTextContainer{
     grid-area: topicHeaderText;
+    width: 100%;
 }
 .headerImageSmall{
     display: none;
 }
 .mainTopicTextContainer h1{
-    font-size: 4.4em;
+    font-size: 5.8em;
     text-transform: uppercase;
     letter-spacing: 0.03em;
     padding-bottom: 25px;
@@ -25,12 +26,49 @@
     grid-area: topicHeaderImage;
 }
 .mainTopicImageContainer img{
-    width: 180px;
+    width: auto;
     height: auto;
+    display: none;
+}
+.nounContainer h4{
+    font-size: 3em;
+    font-weight: 800;
+}
+.nounContainer p {
+    font-size: 1.5em;
+    padding-top: 10px;
+}
+@media only screen and (max-width: 980px){
+    .mainTopicTextContainer h1{
+        font-size: 5em;
+    }
+}
+@media only screen and (max-width: 900px){
+    .mainTopicHeaderContainer{
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-areas: "topicHeaderText topicHeaderText topicHeaderText topicHeaderText topicHeaderText topicHeaderImage"
+    }
+    .mainTopicImageContainer img{
+        width: 140px;
+    }
+}
+@media only screen and (max-width: 720px){
+    .mainTopicTextContainer h1{
+        font-size: 4em;
+    }
+    .mainTopicImageContainer img {
+        width: 100px;
+    }
+}
+@media only screen and (max-width: 660px){
+    .mainTopicTextContainer h1{
+       
+    }
 }
 @media only screen and (max-width: 580px){
     .mainTopicHeaderContainer{
         display: block !important;
+        width: 95%;
     }
     .smallImageTextContainer{
         display: grid;
@@ -42,9 +80,10 @@
         width: 100%;
         grid-area: topicH1;
         text-align: left;
+        font-size: 3.4em;
     }
     .headerImageSmall{
-        display: block;
+        display: none;
         width: 80px;
         height: auto; 
         grid-area: topicSmallImg;
@@ -58,8 +97,11 @@
     }
 }
 @media only screen and (max-width: 450px){
+    .mainTopicHeaderContainer{
+        overflow: hidden;
+    }
     .mainTopicTextContainer h1{
-        font-size: 3.4em;
+        font-size: 3.0em;
     }
     .smallImageTextContainer{
         width: 100%;

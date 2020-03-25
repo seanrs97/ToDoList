@@ -8,13 +8,13 @@ const TopicHeader = props => {
             <div className = "headerStripe" 
             style = {{
                 width: "100%",
-                height: "20px",
+                height: "12px",
                 background: `${props.headerColour}`,
                 margin: "20px 0"
             }}> </div>
             <div className = "titleTextContainer">
                 <p> An Introduction to </p>
-                <h1> {props.title} </h1> 
+                <h3> {props.title} </h3> 
             </div>
             <div className = "imageOne"
             style = {{
