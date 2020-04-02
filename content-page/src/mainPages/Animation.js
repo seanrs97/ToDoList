@@ -2,15 +2,14 @@ import React, {Component} from "react";
 import MainTopicHeader from "../components/MainTopicHeader";
 import MainTopicItem from "../components/MainTopicItem";
 
+import AnimationBanner from "../images/headerImages/Banner4.png";
+
 const Animation = props => {
     return (
         <div>
             <MainTopicHeader
-             headerColour = "linear-gradient(90deg, #ffd32b , #f39200)"
-             mainText = "Animation"
-             nounText = "The process of making films, videos and computer games in which drawings, models or images of people and animals seem to move"
-             badgeName = "BadgeOrange"
-             badgeSrc = "svg"
+                headerImageDesk = {AnimationBanner}
+                stripeColour = "linear-gradient(90deg, rgb(255, 211, 43), rgb(243, 146, 0))"
             />
             <MainTopicItem
              link = "introAnimation"

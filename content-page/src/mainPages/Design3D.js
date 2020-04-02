@@ -2,16 +2,14 @@ import React, {Component} from "react";
 import MainTopicHeader from "../components/MainTopicHeader";
 import MainTopicItem from "../components/MainTopicItem";
 
+import Banner3D from "../images/headerImages/Banner3.png";
+
 const Design3D = props => {
     return (
         <div>
-            <MainTopicHeader
-             headerColour = "linear-gradient(90deg, #57b28e , #3c9d52)"
-             mainText = "3D Design"
-             nounText = "The creation of a three-dimensional object from a digital file using a device 
-             that adds successive layers of material to make the object"
-             badgeName = "BadgeGreen"
-             badgeSrc = "svg"
+            <MainTopicHeader 
+                headerImageDesk = {Banner3D}
+                stripeColour = "linear-gradient(90deg, rgb(87, 178, 142), rgb(60, 157, 82))"
             />
             <MainTopicItem
              link = "intro3d"

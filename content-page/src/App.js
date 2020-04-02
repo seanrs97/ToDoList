@@ -54,6 +54,8 @@ import Intro2D from "./subPages2D/Intro2D";
 /* SUB ANIMATION PAGES */
 import IntroAnimation from "./subPagesAnimation/IntroAnimation";
 
+import ScrollToTop from "./components/ScrollToTop";
+
 import NavBar from "./components/NavBar";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
@@ -67,47 +69,49 @@ class App extends Component{
   render(){
     return (
       <Router>
-        <div className="App">
-            <NavBar/>
-            <div className = "content">
-              <Switch>
-                <Route path = "/" exact component = {Home} />
-                <Route path = "/coding" component = {Coding}/>
-                <Route path = "/animation" component = {Animation}/>
-                <Route path = "/design3d" component = {Design3D}/>
-                <Route path = "/design2d" component = {Design2D}/>
-                <Route path = "/web" component = {Web}/>
-                <Route path = "/robotics" component = {Robotics}/>
-                <Route path = "/ai" component = {AI}/>
-                <Route path = "/codeIntro" component = {CodeIntro}/>
-                <Route path = "/gameDev" component = {GameDev}/>
-                <Route path = "/appDev" component = {AppDev}/>
-                <Route path = "/cms" component = {CMS}/>
-                <Route path = "/vanilla" component = {Vanilla}/>
-                <Route path = "/webBuilder" component = {WebBuilder}/>
-                <Route path = "/intro3d" component = {Intro3D}/>
-                <Route path = "/animation3d" component = {Animation3D}/>
-                <Route path = "/modelling3d" component = {Modelling3D}/>
-                <Route path = "/software3d" component = {Software3D}/>
-                <Route path = "/careers3d" component = {Careers3D}/>
-                <Route path = "/intro2d" component = {Intro2D}/>
-                <Route path = "/introAnimation" component = {IntroAnimation}/>
-                <Route path = "/industrial" component = {Industrial}/>
-                <Route path = "/electricity" component = {Electricity}/>
-                <Route path = "/speechRecognition" component = {SpeechRecognition}/>
-                <Route path = "/problemSolving" component = {ProblemSolving}/>
-                <Route path = "/aiProgramming" component = {AiProgramming}/>
-                <Route path = "/scratch" component = {Scratch}/>
-                <Route path = "/programmingBasics" component = {ProgrammingBasics}/>
-                <Route path = "/uiForGames" component = {UiForGames}/>
-                <Route path = "/storyboarding" component = {StoryBoarding}/>
-                <Route path = "/java" component = {Java}/>
-                <Route path = "/appDevFundamentals" component = {AppDevFundamentals}/>
-                <Route path = "/programmingInIos" component = {ProgrammingInIos}/>
-                <Route path = "/programmingInAndroid" component = {ProgrammingInAndroid}/>
-              </Switch>
-            </div>
-        </div>
+        <ScrollToTop>
+          <div className="App">
+              <NavBar/>
+              <div className = "content">
+                <Switch>
+                  <Route path = "/" exact component = {Home} />
+                  <Route path = "/coding" component = {Coding}/>
+                  <Route path = "/animation" component = {Animation}/>
+                  <Route path = "/design3d" component = {Design3D}/>
+                  <Route path = "/design2d" component = {Design2D}/>
+                  <Route path = "/web" component = {Web}/>
+                  <Route path = "/robotics" component = {Robotics}/>
+                  <Route path = "/ai" component = {AI}/>
+                  <Route path = "/codeIntro" component = {CodeIntro}/>
+                  <Route path = "/gameDev" component = {GameDev}/>
+                  <Route path = "/appDev" component = {AppDev}/>
+                  <Route path = "/cms" component = {CMS}/>
+                  <Route path = "/vanilla" component = {Vanilla}/>
+                  <Route path = "/webBuilder" component = {WebBuilder}/>
+                  <Route path = "/intro3d" component = {Intro3D}/>
+                  <Route path = "/animation3d" component = {Animation3D}/>
+                  <Route path = "/modelling3d" component = {Modelling3D}/>
+                  <Route path = "/software3d" component = {Software3D}/>
+                  <Route path = "/careers3d" component = {Careers3D}/>
+                  <Route path = "/intro2d" component = {Intro2D}/>
+                  <Route path = "/introAnimation" component = {IntroAnimation}/>
+                  <Route path = "/industrial" component = {Industrial}/>
+                  <Route path = "/electricity" component = {Electricity}/>
+                  <Route path = "/speechRecognition" component = {SpeechRecognition}/>
+                  <Route path = "/problemSolving" component = {ProblemSolving}/>
+                  <Route path = "/aiProgramming" component = {AiProgramming}/>
+                  <Route path = "/scratch" component = {Scratch}/>
+                  <Route path = "/programmingBasics" component = {ProgrammingBasics}/>
+                  <Route path = "/uiForGames" component = {UiForGames}/>
+                  <Route path = "/storyboarding" component = {StoryBoarding}/>
+                  <Route path = "/java" component = {Java}/>
+                  <Route path = "/appDevFundamentals" component = {AppDevFundamentals}/>
+                  <Route path = "/programmingInIos" component = {ProgrammingInIos}/>
+                  <Route path = "/programmingInAndroid" component = {ProgrammingInAndroid}/>
+                </Switch>
+              </div>
+          </div>
+        </ScrollToTop>
       </Router>
     );
   }
