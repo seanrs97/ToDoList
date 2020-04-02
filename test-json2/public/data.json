@@ -1,0 +1,77 @@
+[
+    {
+        "webData": 
+        [
+            {
+                "name": "CMS",
+                "text": "content management systems are ....",
+                "image": "./appDev1.svg"
+            },
+            {
+                "name": "Vanilla",
+                "text": "Vanilla coding is ....",
+                "image": "./appDev1.svg"
+            },
+            {
+                "name": "Web Builder",
+                "text": "Web builders are ....",
+                "image": "./appDev1.svg"
+            }
+        ]
+    },
+    {
+        "roboticsData": 
+        [
+            {
+                "name": "industrial robotics",
+                "text": "This is industrial robotics",
+                "image": "./ai2.svg"
+            },
+            {
+                "name": "electrics in robotics",
+                "text": "This is electrics in robotics",
+                "image": "./ai2.svg"
+            }
+        ]
+    },
+    {
+        "aiData":
+        [
+            {
+                "name": "Intro to AI ",
+                "text": "This is an intro to AI",
+                "image": "./ai2.svg"
+            },
+            {
+                "name": "Basics of AI",
+                "text": "These are the fundamental basics of AI",
+                "image": "./ai2.svg"
+            },
+            {
+                "name": "Advanced AI",
+                "text": "This is advanced AI (VERY DIFFICULT)",
+                "image": "./ai2.svg"
+            }
+        ]
+    },
+    {
+        "programmingData":
+        [
+            {
+                "name": "Scratch",
+                "text": "Start from SCRATCH <<< :P :P with this great intro",
+                "image": "./robotics2.svg"
+            },
+            {
+                "name": "HTML5 & CSS3",
+                "text": "learn about templates and styles here",
+                "image": "./appDev1.svg"
+            },
+            {
+                "name": "JavaScript",
+                "text": "Now it's time to learn how to program! ",
+                "image": "./appDev1.svg"
+            }
+        ]
+    }
+]

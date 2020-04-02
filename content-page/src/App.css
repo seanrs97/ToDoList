@@ -15,8 +15,9 @@
 h1,h2,h3,h4,h5,h6,p{
   margin: 0;
   padding: 0;
-  line-height: 1em;
+  line-height: 1.25em;
   letter-spacing: 0.03em;
+  font-weight: 800;
 }
 p, a, span {
   font-weight: 450;
@@ -45,6 +46,8 @@ h5{
 }
 .getStartedMobile{
   display: none;
+  color: darkgrey;
+  padding-top: 100px;
 }
 @media only screen and (max-width: 770px){
   .content{
@@ -55,18 +58,8 @@ h5{
   .mobileHomeImage{
     display: block;
   }
-  .getStarted{
-    display: none;
-  }
   .getStartedMobile{
     display: block;
-  }
-  .badgesContainer{
-    display: block !important;
-  }
-  .badgesContainer img{
-    width: 40% !important;
-    padding: 10px;
   }
 }
 @media only screen and (min-width: 900px){

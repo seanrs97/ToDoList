@@ -1,0 +1,40 @@
+.subTopicContainer{
+    background: url("images/contentTopic1.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.subTopicContainer:nth-of-type(odd){
+    background: url("images/contentTopic2.svg");
+}
+.subTopicContent{
+    background: rgba(220, 29, 79, 0.5);
+    width: 80%;
+    margin: 24px auto 24px auto;
+    height: 100%;
+    color: white;
+    transform: rotate(-2deg);
+    border-radius: 20px;
+    position: relative;
+}
+.subTopicContent h1{
+    text-align: center;
+    transform: rotate(2deg);
+    font-size: 2.4em;
+    padding: 20px 0;
+}
+.subTopicContent p {
+    transform: rotate(2deg);
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+.subTopicContent img{
+    height: auto;
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transform: rotate(2deg);
+    padding-bottom: 20px;
+}

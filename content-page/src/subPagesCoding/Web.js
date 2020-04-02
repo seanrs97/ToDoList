@@ -7,11 +7,8 @@ const Web = props => {
     return (
         <div>
           <MainTopicHeader
-            headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
-            mainText = "Web Development"
-            nounText = "The work involved in developing a website for the Internet (World Wide Web) or an intranet (a private network)."
-            badgeName = "BadgeBlue"
-            badgeSrc = "svg"/>
+
+          />
             <MainTopicItem
                 link = "cms"
                 srcName = "web1"

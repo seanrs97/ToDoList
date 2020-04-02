@@ -1,0 +1,32 @@
+.contentHeader{
+    height: 100vh;
+    background: url("images/home-background1.svg");
+    background-repeat: no-repeat;
+    margin-top: -1.67px;
+}
+.contentTextContainer{
+    color: white;
+    padding-top: 50px;
+    width: 80%;
+    margin: 0 auto;
+}
+.contentTextContainer h1{
+    font-size: 3.2em;
+}
+.wordsContainer2{
+    width: 80%;
+    margin: 0 auto;
+    padding: 140px 0 0 0;
+    margin-bottom: 200px;
+  }
+  .wordsContainer2 div{
+    padding: 20px 0;
+  }
+  .wordsContainer2 h1{
+    font-size: 3.4em;
+    color: #b8b8b8;
+  }
+  .wordsContainer2 p{
+    font-size: 1.2em;
+    color: #383838;
+  }

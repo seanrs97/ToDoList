@@ -1,6 +1,7 @@
 import React from "react";
 import MainTopicHeader from "../components/MainTopicHeader";
 
+import badge from "../images/BadgeOrange.svg";
 
 import {BrowserRouter, Route, Link} from "react-router-dom";
 import MainTopicItem from "../components/MainTopicItem";
@@ -9,12 +10,7 @@ import MainTopicItem from "../components/MainTopicItem";
 const Coding = () => {
     return( 
         <div>
-            <MainTopicHeader
-            headerColour = "linear-gradient(90deg, rgba(0,178,237,1) 0%, rgba(29,113,184,1) 100%)"
-            mainText = "Coding"
-            nounText = "The process of creating computer programming code"
-            badgeName = "BadgeBlue"
-            badgeSrc = "svg"/>
+            <MainTopicHeader />
 
             <MainTopicItem
             link = "codeIntro"
