@@ -1,0 +1,40 @@
+{
+    "details":{
+        "coreDetails":[
+            {
+                "headerName": "Animation",
+                "headerColour": "Orange"
+            }
+        ],
+        "content":[
+            {
+                "name": "Stop Motion Studio",
+                "difficulty": "Easy",
+                "popularity": "Low",
+                "experience": "5 Months",
+                "image": "../images/image6.png"
+            },
+            {
+                "name": "Animate CC",
+                "difficulty": "Average",
+                "popularity": "Very High",
+                "experience": "1 Year",
+                "image": "../images/image7.png"
+            },
+            {
+                "name": "Cinema 4D",
+                "difficulty": "Hard",
+                "popularity": "High",
+                "experience": "4 Years",
+                "image": "../images/image10.png"
+            },
+            {
+                "name": "AutoDesk Maya",
+                "difficulty": "Hard",
+                "popularity": "Very High",
+                "experience": "2 Years",
+                "image": "../images/image9.png"
+            }
+        ]
+    }
+}

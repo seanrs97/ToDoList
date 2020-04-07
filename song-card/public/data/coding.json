@@ -1,0 +1,40 @@
+{
+"details":{
+        "coreDetails": [
+            {
+                "headerName": "Coding",
+                "headerColour": "lightblue"
+            }
+        ],
+        "content": [
+            {
+                "name": "Java",
+                "difficulty": "Average",
+                "popularity": "Very High",
+                "experience": "1 year",
+                "image": "../images/image1.png"
+            },
+            {
+                "name": "C++",
+                "difficulty": "Hard",
+                "popularity": "High",
+                "experience": "4 years",
+                "image": "../images/image5.png"
+            },
+            {
+                "name": "Python",
+                "difficulty": "Easy",
+                "popularity": "High",
+                "experience": "9 months",
+                "image": "../images/image8.png"
+            },
+            {
+                "name": "C",
+                "difficulty": "Very Hard",
+                "popularity": "Average",
+                "experience": "3 years",
+                "image": "../images/image12.png"
+            }
+        ]
+    }
+}

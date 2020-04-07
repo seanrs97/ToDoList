@@ -1,0 +1,40 @@
+{
+"details":{
+        "coreDetails": [
+            {
+                "headerName": "3D Design",
+                "headerColour": "green"
+            }
+        ],
+        "content": [
+            {
+                "name": "Blender",
+                "difficulty": "Easy",
+                "popularity": "Average",
+                "experience": "4 Months",
+                "image": "../images/image11.png"
+            },
+            {
+                "name": "SketchUp",
+                "difficulty": "Easy",
+                "popularity": "Low",
+                "experience": "3 Months",
+                "image": "../images/image4.png"
+            },
+            {
+                "name": "Oculus",
+                "difficulty": "Very Hard",
+                "popularity": "Average",
+                "experience": "5 Years",
+                "image": "../images/image11.png"
+            },
+            {
+                "name": "AutoDesk 3DS Max",
+                "difficulty": "Very Hard",
+                "popularity": "High",
+                "experience": "3 Years",
+                "image": "../images/banner7.png"
+            }
+        ]
+    }   
+}

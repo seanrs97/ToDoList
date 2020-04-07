@@ -1,15 +1,21 @@
 import React from 'react';
 import './App.css';
-import GamesDev from "./gamesDev.svg";
-import CodeImage from "./codeImage3.svg";
 
-import BasePage from "./pages/BasePage";
+import Card from "./components/Card";
+
 import Coding from "./pages/Coding";
+import QueryDemo from "./components/QueryDemo";
 
-function App() {
+
+import axios from "axios"
+
+import {BrowserRouter as Router, Link, Switch, useLocation} from "react-router-dom";
+function App(){
   return (
     <div className="App">
-      <Coding/>
+      <Router>
+        <QueryDemo/>
+      </Router>
     </div>
   );
 }

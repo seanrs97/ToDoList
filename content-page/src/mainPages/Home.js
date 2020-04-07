@@ -10,10 +10,10 @@ import {Link} from "react-router-dom";
 import styled from "styled-components";
 
 import BannerImage from "../images/headerImages/webHeaderDesktop.jpg"
-import BannerImage2 from "../images/headerImages/Banner2.png";
+import BannerImage2 from "../images/headerImages/CodingBanner1.png";
 import BannerImage3 from "../images/headerImages/Banner3.png";
 import BannerImage4 from "../images/headerImages/Banner4.png";
-import BannerImage5 from "../images/headerImages/Banner5.png";
+import BannerImage5 from "../images/headerImages/CodingBanner2.png";
 import BannerImage6 from "../images/headerImages/Banner6.png";
 import BannerImage7 from "../images/headerImages/Banner7.png";
 
@@ -22,15 +22,17 @@ const imagesArray = [`${BannerImage}`,`${BannerImage2}`,`${BannerImage3}`,`${Ban
 const Container = styled.div`
     width: 100%;
     margin: 0 auto;
+    color: #414042;
+    img{
+        margin-top: 20px;
+    }
 `
-const H4 = styled.h4`
+const H5 = styled.h5`
     text-transform: lowercase;
     margin-bottom: 10px;
     font-weight: 800;
-    color: darkgrey;
 `
 const H3 = styled.h3`
-    color: darkgrey;
     font-weight: 200;
     font-size: 2em;
     padding-bottom: 60px;
@@ -39,8 +41,6 @@ const H3 = styled.h3`
     }
 `
 const MeaningWrapper = styled.div`
-    width: 90%;
-    margin: 0 auto;
     padding: 25px 0;
     height: 90px;
 `
@@ -50,7 +50,7 @@ const BadgesContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     img{
-        width: 62%;
+        width: 50%;
     }
     @media only screen and (max-width:500px){
         display: block !important;
@@ -69,6 +69,17 @@ const HomeBanner = styled.div`
     background-attachment: fixed;
     margin: 50px 0;
 `
+const LogoImage = styled.img`
+    width: 65%;
+    margin-bottom: 20px;
+    @media only screen and (min-width: 900px){
+        width: 56% !important;
+    }
+`
+const IntroContainer = styled.div`
+    width: 90%;
+    margin: 0 auto;
+`
 
 class Home extends React.Component {
     constructor(){
@@ -84,23 +95,19 @@ class Home extends React.Component {
     render(){
         return (
             <Container>
-                <img className = "futureProofLogo" src = {logo} style = {{
-                    width: "70%",
-                    marginBottom: "20px",
-                    paddingLeft: "20px"
-                }}/>
-                <img className = "mobileHomeImage" src = {HomePage}/>
-
-                <MeaningWrapper>
-                    <H4> Adjective </H4>
-                    <p> (Of a product or system) Unlikely to become obsolete</p>
-                </MeaningWrapper>
-                <MeaningWrapper>
-                    <H4> Verb </H4>
-                    <p> make (a product or system) future proof.
-                        "this approach allows you to future-proof your applications"
-                    </p>
-                </MeaningWrapper>
+                <IntroContainer>
+                    <LogoImage src = {logo} />
+                    <MeaningWrapper>
+                        <H5> Adjective </H5>
+                        <p> A product or system unlikely to become obsolete</p>
+                    </MeaningWrapper>
+                    <MeaningWrapper>
+                        <H5> Verb </H5>
+                        <p> To make future proof.
+                            "this approach allows you to future-proof your applications"
+                        </p>
+                    </MeaningWrapper>
+                </IntroContainer>
                 <HomeBanner backgroundImage = {imagesArray[this.state.currentImageIndex]}/>
                 <div style = {{ textAlign: "center"}}>
                     <H3> Get started by picking a topic that interests you! </H3>

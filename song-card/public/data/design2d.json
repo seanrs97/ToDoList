@@ -1,0 +1,40 @@
+{
+"details":{
+        "coreDetails":[
+            {
+                "headerName": "2D Design",
+                "headerColour": "salmon"
+            }
+        ],
+        "content":[
+            {
+                "name": "Paint",
+                "difficulty": "Very Easy",
+                "popularity": "Low",
+                "experience": "2 Months",
+                "image": "../images/image3.png"
+            },
+            {
+                "name": "GIMP",
+                "difficulty": "Easy",
+                "popularity": "Very Low",
+                "experience": "3 Months",
+                "image": "../images/image13.png"
+            },
+            {
+                "name": "Adobe PhotoShop",
+                "difficulty": "Average",
+                "popularity": "Very High",
+                "experience": "1.5 Years",
+                "image": "../images/banner6.png"
+            },
+            {
+                "name": "Adobe Illustrator",
+                "difficulty": "Hard",
+                "popularity": "High",
+                "experience": "2.5 Years",
+                "image": "../images/image3.png"
+            }
+        ]
+    }
+}

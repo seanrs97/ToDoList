@@ -3,11 +3,15 @@ import MainTopicHeader from "../components/MainTopicHeader";
 import MainTopicItem from "../components/MainTopicItem";
 import NextSteps from "../components/NextSteps";
 
+import CodingBanner from "../images/headerImages/CodingBanner5.png";
+
 const Web = props => {
     return (
         <div>
           <MainTopicHeader
-
+            headerImageDesk = {CodingBanner}
+            stripeColour = "linear-gradient(90deg, rgb(42, 181, 227), rgb(11, 146, 191))"
+            mainText = "Web Development"
           />
             <MainTopicItem
                 link = "cms"

@@ -11,17 +11,23 @@ const Container = styled.div`
     overflow: hidden;
     color: white;
     position: relative;
-    min-height: 80vh;
-    max-height: 100vh;
+    min-height: 70vh;
+    max-height: 90vh;
     background: url(${props => props.headerImageDesk});
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    @media only screen and (max-width: 800px){
+    @media only screen and (max-width: 760px){
         background: url(${props => props.headerImageTab});
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
     }
-    @media only screen and (max-width: 450px){
+    @media only screen and (max-width: 500px){
         background: url(${props => props.headerImageMob});
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
     }
 `
 const SmallImageTextContainer = styled.div`
@@ -40,6 +46,18 @@ const SmallImageTextContainer = styled.div`
     p {
         color: white;
         font-weight: 400;
+    }
+    @media only screen and (max-width: 760px){
+        width: 65%;
+    }
+    @media only screen and (max-width: 500px){
+        width: 80%;
+        h1{
+            font-size: 2.6em;
+        }
+        p{
+            font-size: 1.05em;
+        }
     }
 `
 const Stripe = styled.div`

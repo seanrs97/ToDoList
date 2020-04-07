@@ -4,16 +4,15 @@ import MainTopicItem from "../components/MainTopicItem";
 
 import {Link} from "react-router-dom";
 
+import Banner2D from "../images/headerImages/Banner6.png"
 const Design2D = props => {
     return (
         <div>
-            <MainTopicHeader
-             headerColour = "linear-gradient(90deg, #fb1842 , #d00056)"
-             mainText = "2D Design"
-             nounText = "(of a work of art) having its elements organized in 
-             terms of a flat surface, especially emphasizing the vertical and horizontal character of the picture plane"
-             badgeName = "BadgeRed"
-             badgeSrc = "svg"/>
+            <MainTopicHeader 
+                headerImageDesk = {Banner2D}
+                stripeColour = "linear-gradient(90deg, rgb(251, 24, 66), rgb(208, 0, 86))"
+                mainText = "3D Design"
+            />
             <MainTopicItem
              link = "intro2d"
              srcName = "2DIntro"

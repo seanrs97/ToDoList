@@ -3,17 +3,16 @@ import MainTopicHeader from "../components/MainTopicHeader";
 import MainTopicItem from "../components/MainTopicItem";
 import NextSteps from "../components/NextSteps";
 
+import CodingBanner from "../images/headerImages/CodingBanner6.png"
+
 const AppDev = props => {
     return (
         <div>
            <MainTopicHeader
-            headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
-            mainText = "Application Development"
-            nounText = "Mobile app development is the act or process by which a 
-            mobile app is developed for mobile devices, such as personal digital assistants, 
-            enterprise digital assistants or mobile phones."
-            badgeName = "BadgeBlue"
-            badgeSrc = "svg"/>
+                headerImageDesk = {CodingBanner}
+                stripeColour = "linear-gradient(90deg, rgb(42, 181, 227), rgb(11, 146, 191))"
+                mainText = "Application Development"
+           />
             <MainTopicItem
                 link = "scratch"
                 srcName = "gameDev1"

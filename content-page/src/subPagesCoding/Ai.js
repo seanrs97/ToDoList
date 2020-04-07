@@ -4,17 +4,16 @@ import MainTopicHeader from "../components/MainTopicHeader";
 import MainTopicItem from "../components/MainTopicItem";
 import NextSteps from "../components/NextSteps";
 
+import CodingBanner from "../images/headerImages/CodingBanner3.png";
+
 const AI = props => {
     return (
         <div>
             <MainTopicHeader
-            headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
-            mainText = "Artificial Intelligence (AI)"
-            nounText = "the capacity of a computer to perform operations analogous to learning and 
-            decision making in humans, as by an expert system, a program for CAD or CAM, or a 
-            program for the perception and recognition of shapes in computer vision systems. Abbreviation: AI, A.I."
-            badgeName = "BadgeBlue"
-            badgeSrc = "svg"/>
+                headerImageDesk = {CodingBanner}
+                stripeColour = "linear-gradient(90deg, rgb(42, 181, 227), rgb(11, 146, 191))"
+                mainText = "Artificial Intelligence"
+            />
             <MainTopicItem
                 link = "speechRecognition"
                 srcName = "ai1"

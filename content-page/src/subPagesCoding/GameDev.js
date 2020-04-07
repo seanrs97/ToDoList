@@ -3,17 +3,16 @@ import MainTopicHeader from "../components/MainTopicHeader";
 import MainTopicItem from "../components/MainTopicItem";
 import NextSteps from "../components/NextSteps";
 
+import CodingBanner from "../images/headerImages/CodingBanner4.png"
+
 const GameDev = props => {
     return (
         <div>
-           <MainTopicHeader
-            headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
+          <MainTopicHeader
+            headerImageDesk = {CodingBanner}
+            stripeColour = "linear-gradient(90deg, rgb(42, 181, 227), rgb(11, 146, 191))"
             mainText = "Game Development"
-            nounText = "Game Development is the art of creating games 
-            and describes the design, development and release of a game.
-             It may involve concept generation, design, build, test and release."
-            badgeName = "BadgeBlue"
-            badgeSrc = "svg"/>
+          />
             <MainTopicItem
                 link = "scratch"
                 srcName = "gameDev1"

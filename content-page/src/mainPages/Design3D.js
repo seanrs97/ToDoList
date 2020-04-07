@@ -10,6 +10,7 @@ const Design3D = props => {
             <MainTopicHeader 
                 headerImageDesk = {Banner3D}
                 stripeColour = "linear-gradient(90deg, rgb(87, 178, 142), rgb(60, 157, 82))"
+                mainText = "3D Design"
             />
             <MainTopicItem
              link = "intro3d"

@@ -10,6 +10,7 @@ const Animation = props => {
             <MainTopicHeader
                 headerImageDesk = {AnimationBanner}
                 stripeColour = "linear-gradient(90deg, rgb(255, 211, 43), rgb(243, 146, 0))"
+                mainText = "Animation"
             />
             <MainTopicItem
              link = "introAnimation"

@@ -10,12 +10,11 @@
   background: white;
   width: 80%;
   margin: 0 auto;
-  padding: 20px 0;
 }
 h1,h2,h3,h4,h5,h6,p{
   margin: 0;
   padding: 0;
-  line-height: 1.25em;
+  line-height: 1.5em;
   letter-spacing: 0.03em;
   font-weight: 800;
 }
@@ -37,12 +36,8 @@ h3,h4{
 }
 h5,h6{
   font-weight: 600;
-}
-h5{
-  font-size: 1.6em;
-}
-.mobileHomeImage{
-  display: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 2.4em;
 }
 .getStartedMobile{
   display: none;
@@ -55,16 +50,8 @@ h5{
   }
 }
 @media only screen and (max-width: 500px){
-  .mobileHomeImage{
-    display: block;
-  }
   .getStartedMobile{
     display: block;
-  }
-}
-@media only screen and (min-width: 900px){
-  .futureProofLogo{
-    width: 56% !important;
   }
 }
 .theHeader, .sectionFirst, .sectionSecond{

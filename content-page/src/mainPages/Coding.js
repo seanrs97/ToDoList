@@ -6,7 +6,7 @@ import badge from "../images/BadgeOrange.svg";
 import {BrowserRouter, Route, Link} from "react-router-dom";
 import MainTopicItem from "../components/MainTopicItem";
 
-import CodingBanner from "../images/headerImages/Banner2.png";
+import CodingBanner from "../images/headerImages/CodingBanner1.png";
 
 
 const Coding = () => {
@@ -15,6 +15,7 @@ const Coding = () => {
             <MainTopicHeader 
                 headerImageDesk = {CodingBanner}
                 stripeColour = "linear-gradient(90deg, rgb(42, 181, 227), rgb(11, 146, 191))"
+                mainText = "Coding"
             />
 
             <MainTopicItem

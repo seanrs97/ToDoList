@@ -33,7 +33,7 @@
         text-align: center;
     }
 }
-@media only screen and (max-width: 480px){
+@media only screen and (max-width: 540px){
     .mainTopicItemContainer{
         display: block;
         text-align: center;
