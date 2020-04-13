@@ -11,7 +11,7 @@ const Design2D = props => {
             <MainTopicHeader 
                 headerImageDesk = {Banner2D}
                 stripeColour = "linear-gradient(90deg, rgb(251, 24, 66), rgb(208, 0, 86))"
-                mainText = "3D Design"
+                mainText = "2D Design"
             />
             <MainTopicItem
              link = "intro2d"

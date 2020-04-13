@@ -1,16 +1,17 @@
 import React from "react";
-import TopicHeader from "../components/TopicHeader";
+import MainTopicHeader from "../components/MainTopicHeader";
 import MainContent from "../components/MainContent";
 import NextSteps from "../components/NextSteps";
+
+import CodingBanner from "../images/headerImages/CodingBanner1.png";
 
 const Intro3D = props => {
     return (
         <div>
-            <TopicHeader
-                headerColour = "linear-gradient(90deg, #57b28e , #3c9d52)"
-                title = "3D Design"
-                imageOne = "coding"
-                imageTwo = "coding2"
+           <MainTopicHeader
+                headerImageDesk = {CodingBanner}
+                stripeColour = "linear-gradient(90deg, rgb(42, 181, 227), rgb(11, 146, 191))"
+                mainText = "Introduction to 3D"
             />
             <MainContent
                 srcName = "codeImage1"

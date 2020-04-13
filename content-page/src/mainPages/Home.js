@@ -29,8 +29,9 @@ const Container = styled.div`
 `
 const H5 = styled.h5`
     text-transform: lowercase;
-    margin-bottom: 10px;
+    margin-bottom: -10px;
     font-weight: 800;
+    font-size: 1.8em;
 `
 const H3 = styled.h3`
     font-weight: 200;
@@ -41,8 +42,7 @@ const H3 = styled.h3`
     }
 `
 const MeaningWrapper = styled.div`
-    padding: 25px 0;
-    height: 90px;
+    padding: 14px 0;
 `
 const BadgesContainer = styled.div`
     color: darkgrey;
@@ -71,7 +71,7 @@ const HomeBanner = styled.div`
 `
 const LogoImage = styled.img`
     width: 65%;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     @media only screen and (min-width: 900px){
         width: 56% !important;
     }
@@ -99,12 +99,11 @@ class Home extends React.Component {
                     <LogoImage src = {logo} />
                     <MeaningWrapper>
                         <H5> Adjective </H5>
-                        <p> A product or system unlikely to become obsolete</p>
+                        <p style = {{textTransform: "lowercase", fontSize: "1.8em"}}> A product, system or person unlikely to become obsolete.</p>
                     </MeaningWrapper>
                     <MeaningWrapper>
                         <H5> Verb </H5>
-                        <p> To make future proof.
-                            "this approach allows you to future-proof your applications"
+                        <p style = {{textTransform: "lowercase", fontSize: "1.8em"}}> To make future proof. "this approach allows you to future-proof yourself"
                         </p>
                     </MeaningWrapper>
                 </IntroContainer>

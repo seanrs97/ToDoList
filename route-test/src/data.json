@@ -1,0 +1,28 @@
+{
+    "data":[
+        {
+            "id": "web",
+            "name": "Web Development",
+            "description": "Want to learn how to build and design your own website? well this is the place for you!!!!",
+            "image": "https://seo-trench.com/wp-content/uploads/2019/11/12-Websites-You-Should-Check-Out-to-Learn-Web-Development-Fast.png"
+        },
+        {
+            "id": "ai",
+            "name": "Artificial Intelligence",
+            "description": "The present and the future of the world! artificial intelligence is shaping how we live our lives on a daily basis",
+            "image": "https://g.foolcdn.com/editorial/images/560874/glowing-android-head-with-the-words-artificial-intelligence.jpg"
+        },
+        {
+            "id": "programming",
+            "name": "Programming",
+            "description": "Every computer game you've ever played, website you've ever visited and elevator you've ever ridden has been programmed! learn how the magic behind it",
+            "image": "https://prod-discovery.edx-cdn.org/media/course/image/d64fa565-a848-4f82-8c07-f2a2d98c3e4e-1cf577279324.small.jpeg"
+        },
+        {
+            "id": "app-development",
+            "name": "Application Development",
+            "description": "You use them every day on your phone , so why not learn how to build your very own app!",
+            "image": "https://cdn-images-1.medium.com/max/626/1*o85c5I6T07x3ZZCAWPgDfg.jpeg"
+        }
+    ]
+}

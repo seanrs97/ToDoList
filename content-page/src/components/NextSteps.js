@@ -13,6 +13,9 @@ const Container = styled.div`
     background-repeat: no-repeat;
     height: 350px;
     position: relative;
+    @media only screen and (min-width: 2000px){
+        height: 450px;
+    }
 `
 const ButtonLink = styled(Link)`
     textDecoration: none;
@@ -20,6 +23,7 @@ const ButtonLink = styled(Link)`
 const ButtonText = styled.div`
     background: rgba(100, 100, 100, 0.6);
     border: 8px solid black;
+    text-align: center;
     padding: 20px;
     font-weight: 600;
     font-size: 1.5em;
@@ -36,6 +40,16 @@ const ButtonText = styled.div`
     :hover{
         background: rgba(100, 100, 100, 0.9);
     }
+    @media only screen and (min-width: 2400px){
+        font-size: 2em;
+        width: 25%;
+        padding: 50px;
+    }
+    @media only screen and (min-width: 2000px) and (max-width: 2400px){
+        padding: 40px;
+        font-size: 1.8em;
+        width: 30%;
+    }
     @media only screen and (max-width: 500px){
         font-size: 1.2em;
     }
@@ -43,20 +57,15 @@ const ButtonText = styled.div`
 
 const NextSteps = props => {
     return (
-        <div className = "nextStepsContainer">
-            <Container>
-                <Link 
-                    style = {{textDecoration: "none"}}
-                    to = {linkSource + `${props.link}`}>
-                    <ButtonText>
-                        Return to {props.link}
-                    </ButtonText>
-                </Link>
-            </Container>
-            <h3 className = "nextStepsHeader"> What now? </h3>
-            <div className = "navigationContainer">
-            </div>
-        </div>
+        <Container>
+            <Link 
+                style = {{textDecoration: "none"}}
+                to = {linkSource + `${props.link}`}>
+                <ButtonText>
+                    Return to {props.link}
+                </ButtonText>
+            </Link>
+        </Container>
     )  
 }
 

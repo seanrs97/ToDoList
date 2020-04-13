@@ -1,17 +1,12 @@
 import React from "react";
-import TopicHeader from "../components/TopicHeader";
 import MainContent from "../components/MainContent";
 import NextSteps from "../components/NextSteps";
+import MainTopicHeader from "../components/MainTopicHeader";
 
 const Intro2D = props => {
     return (
         <div>
-            <TopicHeader
-                headerColour = "linear-gradient(90deg, #fb1842 , #d00056)"
-                title = "2D Design"
-                imageOne = "coding"
-                imageTwo = "coding2"
-            />
+            <MainTopicHeader/>
             <MainContent
                 srcName = "codeImage1"
                 srcType = "svg"

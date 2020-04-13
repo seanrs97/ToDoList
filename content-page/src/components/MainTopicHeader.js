@@ -47,6 +47,22 @@ const SmallImageTextContainer = styled.div`
         color: white;
         font-weight: 400;
     }
+    @media only screen and (min-width: 2500px){
+        h1{
+            font-size: 9em !important;
+        }
+        p{
+            font-size: 3em !important;
+        }
+    }
+    @media only screen and (min-width: 1400px){
+        h1{
+            font-size: 6em;
+        }
+        p{
+            font-size: 1.6em;
+        }
+    }
     @media only screen and (max-width: 760px){
         width: 65%;
     }

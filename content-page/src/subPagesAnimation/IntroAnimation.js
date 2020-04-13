@@ -1,17 +1,12 @@
 import React from "react";
-import TopicHeader from "../components/TopicHeader";
+import MainTopicHeader from "../components/MainTopicHeader";
 import MainContent from "../components/MainContent";
 import NextSteps from "../components/NextSteps";
 
 const IntroAnimation = props => {
     return (
         <div>
-            <TopicHeader
-                headerColour = "linear-gradient(90deg, #ffd32b , #f39200)"
-                title = "Animation"
-                imageOne = "coding"
-                imageTwo = "coding2"
-            />
+           <MainTopicHeader/>
             <MainContent
                 srcName = "codeImage1"
                 srcType = "svg"

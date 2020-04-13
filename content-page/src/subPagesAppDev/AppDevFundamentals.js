@@ -1,15 +1,16 @@
 import React from "react";
-import TopicHeader from "../components/TopicHeader";
+import MainTopicHeader from "../components/MainTopicHeader";
 import MainContent from "../components/MainContent";
+
+import CodingBanner from "../images/headerImages/CodingBanner1.png"
 
 const AppDevFundamentals = () => {
     return (
         <div>
-            <TopicHeader
-                headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
-                title = "App Development Fundamentals"
-                imageOne = "appDev"
-                imageTwo = "appDev2"
+           <MainTopicHeader
+                headerImageDesk = {CodingBanner}
+                stripeColour = "linear-gradient(90deg, rgb(42, 181, 227), rgb(11, 146, 191))"
+                mainText = "App Development Fundamentals"
             />
             <MainContent
                 srcName = "appDev1"

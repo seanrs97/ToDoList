@@ -1,43 +1,56 @@
 import React from "react";
-import TopicHeader from "../components/TopicHeader";
+import MainTopicHeader from "../components/MainTopicHeader";
 import MainContent from "../components/MainContent";
 import NextSteps from "../components/NextSteps";
+import CodingBanner from "../images/headerImages/CodingBanner6.png"
 
 const CodeIntro = props => {
     return (
         <div>
-            <TopicHeader
-               headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
-                title = "Coding & Programming"
-                imageOne = "coding"
-                imageTwo = "coding2"
+            <MainTopicHeader
+                headerImageDesk = {CodingBanner}
+                stripeColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
+                mainText = "Introduction to Coding"
             />
             <MainContent
-                srcName = "codeImage1"
-                srcType = "svg"
-                p = "Adipisicing anim consequat magna ut pariatur duis fugiat ad laborum 
-                ullamco ex magna nisi nostrud. Nisi reprehenderit nisi 
-                aute occaecat duis ad quis commodo aliquip. Voluptate ut 
-                cillum eiusmod minim enim dolore laboris ut pariatur consequat. 
-                Id esse aliqua duis pariatur dolor aliquip qui."
+                srcName = "codingImage1"
+                srcType = "png"
+                p = "Coding is all around us! It’s the way we 
+                interact with technology, and the results are everywhere to see!"
             />
             <MainContent
-                srcName = "codeImage2"
-                srcType = "svg"
-                p = "Adipisicing anim consequat magna ut pariatur duis fugiat ad laborum 
-                ullamco ex magna nisi nostrud. Nisi reprehenderit nisi 
-                aute occaecat duis ad quis commodo aliquip. Voluptate ut 
-                cillum eiusmod minim enim dolore laboris ut pariatur consequat. 
-                Id esse aliqua duis pariatur dolor aliquip qui."
+                srcName = "codingImage2"
+                srcType = "png"
+                p = "Nowadays, almost everything that is powered by electricity uses code."
             />
             <MainContent
-                srcName = "codeImage3"
-                srcType = "svg"
-                p = "Adipisicing anim consequat magna ut pariatur duis fugiat ad laborum 
-                ullamco ex magna nisi nostrud. Nisi reprehenderit nisi 
-                aute occaecat duis ad quis commodo aliquip. Voluptate ut 
-                cillum eiusmod minim enim dolore laboris ut pariatur consequat. 
-                Id esse aliqua duis pariatur dolor aliquip qui."
+                srcName = "codingImage3"
+                srcType = "png"
+                p = "Personal items like:
+                Smart Phones
+                Smart Watches
+                Smart Speakers
+                "
+            />
+            <MainContent
+                srcName = "codingImage4"
+                srcType = "png"
+                p = "Things around the home like:
+                Microwaves
+                Fridges
+                Washing machines
+                "
+            />
+            <MainContent
+                srcName = "codingImage5"
+                srcType = "png"
+                p = "Even big things like:
+                Cars
+                Trains
+                Planes
+                ...and rockets!
+                
+                "
             />
             <NextSteps
                 link = "coding"

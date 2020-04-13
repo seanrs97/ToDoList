@@ -1,17 +1,18 @@
 import React from "react";
 
-import TopicHeader from "../components/TopicHeader";
+import MainTopicHeader from "../components/MainTopicHeader";
 import MainContent from "../components/MainContent";
 import NextSteps from "../components/NextSteps";
+
+import CodingBanner from "../images/headerImages/CodingBanner1.png";
 
 const Vanilla = props => {
     return (
         <div>
-            <TopicHeader
-                headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
-                title = "Vanilla Web Development"
-                imageOne = "ai"
-                imageTwo = "ai2"
+            <MainTopicHeader
+                headerImageDesk = {CodingBanner}
+                stripeColour = "linear-gradient(90deg, rgb(42, 181, 227), rgb(11, 146, 191))"
+                mainText = "Vanilla Programming"
             />
             <MainContent
                 srcName = "ai1"

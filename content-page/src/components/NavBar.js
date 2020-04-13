@@ -41,8 +41,8 @@ class NavBar extends React.Component{
                         </div>
                         <ul className = "menuList">
                             <Link to = "/coding"><li className = "list-element1 elems"> <img src = {BadgeBlue} /></li></Link>
-                            <Link to = "design3d"><li className = "list-element2 elems"> <img src = {BadgeGreen} /></li></Link>
                             <Link to = "design2d"><li className = "list-element3 elems"> <img src = {BadgeRed} /></li></Link>
+                            <Link to = "design3d"><li className = "list-element2 elems"> <img src = {BadgeGreen} /></li></Link>
                             <Link to = "animation"><li className = "list-element4 elems"> <img src = {BadgeOrange} /></li></Link>
                         </ul>
                         <div className = "hamburger" onClick = {this.showMenu}>

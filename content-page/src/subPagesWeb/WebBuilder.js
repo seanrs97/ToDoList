@@ -1,17 +1,18 @@
 import React from "react";
 
-import TopicHeader from "../components/TopicHeader";
+import MainTopicHeader from "../components/MainTopicHeader";
 import MainContent from "../components/MainContent";
 import NextSteps from "../components/NextSteps";
+
+import CodingBanner from "../images/headerImages/CodingBanner1.png";
 
 const WebBuilder = props => {
     return (
         <div>
-            <TopicHeader
-                headerColour = "linear-gradient(90deg, #2ab5e3 , #0b92bf)"
-                title = "Web Builder"
-                imageOne = "ai"
-                imageTwo = "ai2"
+            <MainTopicHeader
+                headerImageDesk = {CodingBanner}
+                stripeColour = "linear-gradient(90deg, rgb(42, 181, 227), rgb(11, 146, 191))"
+                mainText = "Web Builder"
             />
             <MainContent
                 srcName = "ai1"

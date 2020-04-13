@@ -14,9 +14,6 @@
     grid-template-areas: "grid-img grid-para";
     min-height: 30vh;
 }
-.red{
-    background: red;
-}
 .mainContentP{
     grid-area: grid-para;
     line-height: 1.5em;
@@ -24,9 +21,11 @@
     top: 50%;
     transform: translateY(-50%);
     font-size: 1.2em;
+    position: absolute;
 }
 .mainSubContentImg{
     grid-area: grid-img;
+    width: 100%;
 }
 @keyframes animateLeft{
     from {
@@ -42,6 +41,11 @@
     }
     to {
         right: 0;
+    }
+}
+@media only screen and (min-width: 1900px){
+    .mainContentP{
+        font-size: 1.8em;
     }
 }
 @media only screen and (max-width: 770px){

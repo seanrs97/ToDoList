@@ -13,10 +13,9 @@
 .navImg{
     grid-area: grid-img;
     height: auto;
-    width: 160px;
+    width: 240px;
     margin-left: 6%;
     filter: invert(102%) sepia(103%) saturate(1352%) hue-rotate(87deg) brightness(11119%) contrast(119%);
-    padding: 10px 0;
 }
 .menuList{
     grid-area: grid-list;
@@ -37,7 +36,30 @@
 .menuListText{
     display: none;
 }
-
+@media only screen and (min-width: 2450px) {
+    .navImg {
+        width: 320px;
+    }
+    .elems img{
+        width: 110px;
+    }
+}
+@media only screen and (min-width: 2200px) and (max-width: 2450px){
+    .navImg{
+        width: 280px;
+    }
+    .elems img{
+        width: 100px;
+    }
+}
+@media only screen and (min-width: 1650px) and (max-width: 2200px){
+    .navImg{
+        width: 240px;
+    }
+    .elems img{
+        width: 70px;
+    }
+}
 @media only screen and (max-width: 530px){
     .contentContainer{
         display: block;
