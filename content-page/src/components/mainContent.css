@@ -27,22 +27,7 @@
     grid-area: grid-img;
     width: 100%;
 }
-@keyframes animateLeft{
-    from {
-        left: -100%
-    }
-    to {
-        left: 0;
-    }
-}
-@keyframes animateRight{
-    from {
-        right: -100%;
-    }
-    to {
-        right: 0;
-    }
-}
+
 @media only screen and (min-width: 1900px){
     .mainContentP{
         font-size: 1.8em;
