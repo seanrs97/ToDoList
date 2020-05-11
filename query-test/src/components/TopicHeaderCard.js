@@ -17,26 +17,23 @@ import NextSteps from "./templateComponents/NextSteps";
 
 import Play from "./templateComponents/quizComponents/Play";
 
-import {Helmet} from "react-helmet";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-import questionsList from "../questionsList.json";
-
-import IsEmpty from "./templateComponents/quizComponents/IsEmpty";
-
-let questionsList2 = [];
-
 class CoreTopicsCard extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-
+            active: false
         }
     }
-    componentDidUpdate(){
+    componentDidUpdate(prevProps, prevState){
         sal({
             once: false,
         });
+        if(this.props.questions !== prevProps.questions){
+            this.checkQuestions();
+        }
+    }
+    checkQuestions = () => {
+        console.log(this.props.questions)
     }
     render(){
         return(
@@ -57,9 +54,11 @@ class CoreTopicsCard extends React.Component {
                 <MainContent content3 = {this.props.content3}/>
 
                 <React.Fragment>
-                    <Container>
-                        <QuizTwo questions = {this.props.questions} />  
-                        {/* <Play questions = {this.props.questions}/> */}
+                    <Container style = {{display: this.state.active}}>
+                        <Play 
+                            questions = {this.props.questions}
+                            id = {this.props.id}
+                        />
                     </Container>
                 </React.Fragment>
                 <NextSteps 

@@ -14,6 +14,11 @@ class Instructions extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
     handleClick(){
+        if(this.state.active === true){
+            
+        } else {
+
+        }
         this.setState({
             active: !this.state.active
         })
@@ -35,6 +40,7 @@ class Instructions extends React.Component {
                         <Link onClick = {this.props.openQuiz} to = ""> Start quiz </Link>
                         <Link onClick = {this.props.goBack} to = ""> Go back </Link>
                     </ButtonsContainer>
+                    
                     {this.state.active && <Play/>}
                 </Container>
             </React.Fragment>

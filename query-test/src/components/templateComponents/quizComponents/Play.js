@@ -36,12 +36,20 @@ class Play extends React.Component {
             initComplete: false,
 
             showQuestions: "block",
-            showSummary: "none"
+            showSummary: "none",
+            showDialog: "none",
+            showOverlay: "none",
+
+            returnHome: false,
+            showContainer: "block",
+
+            displaySummary: false,
+            displayQuiz: "none",
+            displayHome: "block",
         }
         this.interval = null;
         this.correctSound = React.createRef();
         this.wrongSound = React.createRef();
-
     }
     startGame = () => {
         let {currentQuestionIndex} = this.state;
@@ -51,8 +59,14 @@ class Play extends React.Component {
         let previousQuestion;
         let answer;
 
+
         if(this.props.questions === undefined || this.props.questions === ""){
-            questions = ["default question", "default question 2"];
+            questions = [
+                {
+                    "default question": "default answer", 
+                    "default question 2": "default answer"
+                }
+            ];
             currentQuestion = {"default question": "default question 2"};
             nextQuestion = {"default question": "default question 2"};
             previousQuestion = {"default question": "default question 2"};
@@ -78,23 +92,44 @@ class Play extends React.Component {
             });
         }
     }
-    componentDidUpdate(prevProps){
-        console.log("properties", this.props.questions);
-        if(prevProps.questions !== this.props.questions){
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps.id !== this.props.id){
+            this.checkIfQuizExists();
+            this.exitQuiz();
             clearInterval(this.interval);
-            this.startTimer();
-            this.startGame();
+            this.setState({
+                questions: this.props.questions
+            })
+            if(this.state.currentQuestionIndex !== 0){
+                this.setState({
+                    currentQuestionIndex: 0,
+                    score: 0
+                });
+                this.showOptions();
+            }
+            if(this.state.showSummary !== "none"){
+                this.setState({
+                    showSummary: "none"
+                })
+            }
         }
+    }
+    checkIfQuizExists = () => {
+        // METHOD APPEARS TO WORK BUT PROBABLY DOES NOT < WILL LIKELY REQUIRE FURTHER TESTING!!!!
+        if(this.props.questions === undefined){
+            setTimeout(() => {
+                this.setState({
+                    displayHome: "none"
+                });
+            },100)
+         } else {
+            this.setState({
+                displayHome: "block"
+            });
+         }
     }
     componentWillUnmount(){
         clearInterval(this.interval);
-    }
-    componentDidMount(){
-        this.startTimer();
-        console.log("properties", this.props.questions);
-        this.startGame();
-        // const {questions, currentQuestion, nextQuestion, previousQuestion} = this.state;
-        // this.displayQuestions(questions, currentQuestion, nextQuestion, previousQuestion);
     }
     displayQuestions = (questions = this.state.questions, currentQuestion, nextQuestion, previousQuestion) => {
         let { currentQuestionIndex } = this.state;
@@ -110,10 +145,9 @@ class Play extends React.Component {
                 nextQuestion,
                 previousQuestion,
                 answer,
-                previousRandomNumber: []
+                previousRandomNumber: [],
             }, () => {
                 this.showOptions();
-                // this.handleDisableButton();
             });
         }
     }
@@ -264,20 +298,9 @@ class Play extends React.Component {
                     if(randomNumbers.length < 2 && !randomNumbers.includes(randomNumber) && !randomNumbers.includes(indexOfAnswer)){
                         randomNumbers.push(randomNumber);
                         count ++;
-                    // } else {
-                    //     while (true){
-                    //         const newRandomNumber = Math.round(Math.random() * 3);
-                    //         console.log("new random: ", newRandomNumber, " index: ", indexOfAnswer);
-                    //         if(!randomNumbers.includes(newRandomNumber) && !randomNumbers.includes(indexOfAnswer)){
-                    //             randomNumbers.push(newRandomNumber);
-                    //             count++;
-                    //             break;
-                    //         }
-                    //     }
                     }
                 }
             } while (count < 2);
-            
             options.forEach((option, index) => {
                 if(randomNumbers.includes(index)){
                     option.style.visibility = "hidden";
@@ -316,7 +339,6 @@ class Play extends React.Component {
             success: playerResult,
             successMessage: successMessage,
 
-
         });
         setTimeout(() => {
             console.log("player stats", this.state.endScore);
@@ -331,19 +353,18 @@ class Play extends React.Component {
                 hints: 0,
                 fiftyFifty: 0,
 
-                showSummary: "block"
+                showSummary: "block",
+                displayQuiz: "none"
             });
             clearInterval(this.interval);
             console.log(this.state);
         }, 1000)
     }
     resetQuiz = () => {
-
-    }
-    handleButtonClick = () => {
+        clearInterval(this.interval);
+        this.showOptions();
         this.setState({
             showQuestions: "block",
-            // currentQuestion: this.props.questions[0],
             currentQuestionIndex: 0,
             hints: 5,
             fiftyFifty: 2,
@@ -352,7 +373,6 @@ class Play extends React.Component {
 
             currentQuestion: this.state.questions[0],
             nextQuestion: this.state.questions[0 + 1],
-            // previousQuestion: this.state.questions[this.state.currentQuestionIndex - 1],
             answer: this.state.questions[0].answer,
             previousQuestion: undefined,
 
@@ -363,17 +383,108 @@ class Play extends React.Component {
             score: 0,
             endScore: 0,
 
-            showSummary: "none"
+            showSummary: "none",
+            displayQuiz: "block"
         });
         this.startTimer();
         setTimeout(() => {
             console.log("new state", this.state)
         }, 200)
-        // this.displayQuestions(
-        //     this.state.questions, 
-        //     this.state.currentQuestion, 
-        //     this.state.nextQuestion, 
-        //     this.state.previousQuestion);
+    }
+
+
+    quitQuiz = () => {
+        console.log("are you sure you want to quit this quiz?");
+        this.setState({
+            showDialog: "block",
+            showOverlay: "block",
+        });
+        clearInterval(this.interval);
+    }
+    exitQuiz = () => {
+        this.setState({
+            showDialog: "none",
+            showOverlay: "none",
+            displayHome: "block",
+            displayQuiz: "none"
+        });
+        // this.setState({
+        //     showDialog: this.props.showDialog,
+        //     showOverlay: this.props.showOverlay,
+        //     displayHome: this.props.showHome,
+        //     displayQuiz: this.props.showQuiz
+        // })
+    }
+    resumeQuiz = () => {
+        console.log("pause state", this.state.time.seconds)
+        this.setState({
+            showDialog: "none",
+            showOverlay: "none"
+        });
+        const currentTime = this.state.time.seconds + "000";
+        const resumeTime = parseInt(currentTime) ;
+        console.log(resumeTime)
+
+        const countdownTime = Date.now() + resumeTime;
+
+        console.log("countdown time", countdownTime)
+        this.interval = setInterval(() => {
+            const now = new Date();
+            const distance = countdownTime - now;
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) /  (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000 );
+
+            if(distance < 0){
+                clearInterval(this.interval);
+                this.setState({
+                    time: {
+                        minutes: 0,
+                        seconds: 0
+                    }
+                }, () => {
+                    this.end();
+                });
+            } else {
+                this.setState({
+                    time: {
+                        minutes,
+                        seconds
+                    }
+                })
+            }
+        }, 1000);
+    }
+    goBack = () => {
+        console.log("GONE BACK")
+        this.setState({
+            showContainer: "none"
+        });
+
+        // NEED SOMETHING HERE THAT ENDS THE QUIZ SO IT CAN BE RESTARTED FROM HOME
+    }
+    startQuiz = () => {
+        setTimeout(() => {
+            this.setState({
+                displayQuiz: "block",
+                displayHome: "none"
+            }); 
+        }, 800);
+        this.startGame();
+        this.startTimer();
+        this.setState({
+            hints: 5,
+            fiftyFifty: 2
+        });
+        console.log("fuck this", this.state);
+        if(this.state.currentQuestionIndex !== 0){
+            this.resetQuiz();
+        }
+    }
+    returnHome = () => {
+        this.setState({
+            showSummary: "none",
+            displayHome: "block"
+        })
     }
     render(){
         const {
@@ -386,102 +497,163 @@ class Play extends React.Component {
 
             endScore,
             endNumOfQuestions,
-            endNumOfAnsweredQuestions,
-            endNumberOfCorrectAnswers,
-            endNumberOfWrongAnswers,
-
             success,
             successMessage
         } = this.state;
-        
         return (
         <React.Fragment>
             <audio ref = {this.correctSound} src = {correctSound}></audio>
             <audio ref = {this.wrongSound} src = {incorrectSound}></audio>
             <Helmet> <title> Quiz Page </title></Helmet>
-                <Container style = {{display: this.state.showQuestions}}>
-                    <h1> Quiz Mode </h1>
-                    <LifelineContainer>
-                        <p>
-                            <span onClick = {this.handleHints} className = "lifeline help-icon">
-                                <FontAwesomeIcon icon = "lightbulb"/>
-                            </span>
-                            <span className = "lifelineNum">{hints}</span>
-                        </p>
-                        <p>
-                            <span onClick = {this.handleFiftyFifty} className = "5050 help-icon">
-                                <FontAwesomeIcon icon = "heart"/>
-                            </span>
-                            <span className = "lifelineNum">{fiftyFifty}</span>
-                        </p>
-                    </LifelineContainer>
-                    <LifelineContainer>
-                        <p>
-                            <span style = {{float: "left"}} className = "qNumber">{currentQuestionIndex + 1} of {numberOfQuestions}</span>
-                        </p>
-                        <p>
-                            <span className = "timer help-icon"><FontAwesomeIcon icon="hourglass" /></span>
-                            <span className = "">{time.minutes}:{time.seconds}</span>
-                        </p>
-                    </LifelineContainer>
-                    <H5> {currentQuestion.question} </H5>
-                    <OptionsContainer>
-                        <p onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionA}</p>
-                        <p onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionB}</p>
-                        <p onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionC}</p>
-                        <p onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionD}</p>
-                    </OptionsContainer>
-                    {/* {!!this.props.questions && this.props.questions.map((question) => {
-                        return (
-                            <div>
-                                <H5> {question.question} </H5>
-                                <div>
-                                    <p className = "option"> {question.optionA}</p>
-                                    <p className = "option"> {question.optionB}</p>
-                                    <p className = "option"> {question.optionC}</p>
-                                    <p className = "option"> {question.optionD}</p>
-                                </div>
-                                
-                                </div>
-                            )
-                        }
-                        )} */}
-                        {/* <ButtonContainer>
-                            <button 
-                            className = {classnames("",{'disable': this.state.previousButtonDisabled})}
-                            id = "previous-button" 
-                            onClick = {this.handleButtonClick}>Prev</button> 
-                            <button 
-                            className = {classnames("",{'disable': this.state.nextButtonDisabled})}
-                            id = "next-button" 
-                            onClick = {this.handleButtonClick}>Next</button>
-                            <button id = "quit-button" onClick = {this.handleButtonClick}>Quit</button>
-                        </ButtonContainer> */}
-                    </Container>
+
+                    <Home style = {{display: this.state.displayHome}}>
+                        <h1> Welcome to the quiz </h1>
+                        <button onClick = {this.startQuiz}>Play</button> 
+                    </Home>
+
+
+
+                    <div style = {{display: this.state.displayQuiz, position: "relative"}}>
+
+                        <DialogContainer style = {{display: this.state.showDialog}}>
+                            <h1> Are you sure you want to quit the quiz? </h1>
+                            <button onClick = {this.exitQuiz}> Yes </button>
+                            <button onClick = {this.resumeQuiz}> No </button>
+                        </DialogContainer>
+
+                        <OverlayContainer style = {{display: this.state.showOverlay }}/>
+                        <Container style = {{display: this.state.showContainer}}>
+                            <span onClick = {this.quitQuiz} className = "quitQuiz" > X </span>
+                            <h1> Quiz Mode </h1>
+                            <LifelineContainer>
+                                <p>
+                                    <span onClick = {this.handleHints} className = "lifeline help-icon">
+                                        <FontAwesomeIcon icon = "lightbulb"/>
+                                    </span>
+                                    <span className = "lifelineNum">{hints}</span>
+                                </p>
+                                <p>
+                                    <span onClick = {this.handleFiftyFifty} className = "5050 help-icon">
+                                        <FontAwesomeIcon icon = "heart"/>
+                                    </span>
+                                    <span className = "lifelineNum">{fiftyFifty}</span>
+                                </p>
+                            </LifelineContainer>
+                            <LifelineContainer>
+                                <p>
+                                    <span style = {{float: "left"}} className = "qNumber">{currentQuestionIndex + 1} of {numberOfQuestions}</span>
+                                </p>
+                                <p>
+                                    <span className = "timer help-icon"><FontAwesomeIcon icon="hourglass" /></span>
+                                    <span className = "">{time.minutes}:{time.seconds}</span>
+                                </p>
+                            </LifelineContainer>
+                            <H5> {currentQuestion.question} </H5>
+                            <OptionsContainer>
+                                <p style = {{visibility: this.state.optionsShow }} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionA}</p>
+                                <p style = {{visibility: this.state.optionsShow }} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionB}</p>
+                                <p style = {{visibility: this.state.optionsShow }} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionC}</p>
+                                <p style = {{visibility: this.state.optionsShow }} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionD}</p>
+                            </OptionsContainer>
+                        </Container>
+                    </div>
                     <div style = {{display: this.state.showSummary}}>
-                    <Summary
-                            
-                            score = {endScore}
-                            numOfQuestions = {endNumOfQuestions}
-                            success = {success}
-                            successMessage = {successMessage}
-                            playAgain = {this.handleButtonClick}
-                        />
+                        <Summary
+                                score = {endScore}
+                                numOfQuestions = {endNumOfQuestions}
+                                success = {success}
+                                successMessage = {successMessage}
+                                playAgain = {this.resetQuiz}
+                                homeReturn = {this.returnHome}
+                            />
                     </div>
                 </React.Fragment>
             )
         }
     }
 
-    const Container = styled.div`
-        width: 100%;
-        padding: 14px;
-        h1{ 
-            text-align: center;
-            font-weight: 400;
-            font-size: 6em;
-            color: white;
+const Home = styled.div`
+    background: #23758b;
+    height: 60vh;
+    padding: 14px;
+    color: white;
+    position: relative;
+    h1{
+        font-size: 4.5em;
+    }
+    button{
+        border: none;
+        border-radius: 14px;
+        background: #43f443;
+        font-size: 2.4em;
+        padding: 20px 50px;
+        color: white;
+        transition: .4s all;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        &:hover{
+            background: #3be23b;
         }
+    }
+`
+const Container = styled.div`
+    width: 97.15%;
+    padding: 14px;
+    transition: .7s all;
+    background: #23758b;
+    color: white;
+    height: 60vh;
+    .quitQuiz{
+        font-weight: 800;
+        color: white;
+        position: absolute;
+        font-size: 2.5em;
+        cursor: pointer;
+    }
+    h1{ 
+        text-align: center;
+        font-weight: 400;
+        font-size: 6em;
+        color: white;
+    }
+`
+const OverlayContainer = styled.div`
+    position:absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.2;
+    background: black;
+    display: none;
+`
+const DialogContainer = styled.div`
+    transform: translate(-50%,-50%);
+    position: absolute;
+    width: 30%;
+    height: 30%;
+    background: white;
+    color: black;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    z-index: 6666;
+    border-radius: 10px;
+    padding: 10px;
+    h1{
+        font-size: 1.2em;
+        color: black;
+    }
+    button{
+        width: 35%;
+        margin: 10px;
+        border-radius: 5px;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
 `
 const LifelineContainer = styled.div`
     display: flex;
@@ -490,12 +662,15 @@ const LifelineContainer = styled.div`
     margin: 0 auto;
     color: white;
     p{
+        span{
+            color: white;
+        }
         .help-icon{
             cursor: pointer;
-            color: green;
+            color: rgba(71,187,230,1);
             transition: .4s all;
             &:hover{
-                color: lightgreen;
+                color: rgba(185, 236, 255, 1)
             }
         }
     }
