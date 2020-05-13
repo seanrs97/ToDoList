@@ -3,12 +3,14 @@ import {Helmet} from "react-helmet";
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import IsEmpty from "./IsEmpty";
-import M from "materialize-css";
 
 import correctSound from "../../sounds/correct.mp3";
 import incorrectSound from "../../sounds/incorrect.mp3";
+import QuizImage1 from "../../images/SVG/quiz-wave-1.svg";
+import QuizImage2 from "../../images/SVG/quiz-wave-2.svg";
 
 import Summary from "./Summary";
+import Confetti from "./Confetti";
 
 class Play extends React.Component {
     constructor(props){
@@ -46,7 +48,14 @@ class Play extends React.Component {
             displaySummary: false,
             displayQuiz: "none",
             displayHome: "block",
+
+            answerMessage: "",
+            showConfetti: "none",
+            optionDisabled: true,
+
+            backgroundChange: "#23758b",
         }
+
         this.interval = null;
         this.correctSound = React.createRef();
         this.wrongSound = React.createRef();
@@ -165,50 +174,57 @@ class Play extends React.Component {
         }
     }
     correctAnswer = () => {
-        M.toast({
-            html: "Correct answer!",
-            classes: "toast-valid",
-            displayLength: 1500
+        this.setState({
+            answerMessage: "Correct",
+            optionDisabled: false,
+            backgroundChange: "#52b830"
         });
-        this.setState(prevState => ({
-            score: prevState.score + 1,
-            correctAnswers: prevState.correctAnswers + 1,
-            currentQuestionIndex: prevState.currentQuestionIndex + 1,
-            numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1
-        }), () => {
-            if(this.state.nextQuestion === undefined){
-                this.end();
-            } else {
-                this.displayQuestions(
-                    this.state.questions, 
-                    this.state.currentQuestion, 
-                    this.state.nextQuestion, 
-                    this.state.previousQuestion);
-            }
-        })
+        setTimeout(() => {
+            this.setState(prevState => ({
+                score: prevState.score + 1,
+                correctAnswers: prevState.correctAnswers + 1,
+                currentQuestionIndex: prevState.currentQuestionIndex + 1,
+                numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1,
+                answerMessage: "",
+            }), () => {
+                if(this.state.nextQuestion === undefined){
+                    this.end();
+                } else {
+                    this.displayQuestions(
+                        this.state.questions, 
+                        this.state.currentQuestion, 
+                        this.state.nextQuestion, 
+                        this.state.previousQuestion);
+                }
+            })
+        }, 1500);
     }
     incorrectAnswer = () => {
         navigator.vibrate(1000);
-        M.toast({
-            html: "Incorrect answer!",
-            classes: "toast-invalid",
-            displayLength: 1500
+        this.setState({
+            answerMessage: "Incorrect",
+            optionDisabled: false,
+            backgroundChange: "#f7554d"
         });
-        this.setState(prevState => ({
-            wrongAnswers: prevState.wrongAnswers + 1,
-            currentQuestionIndex: prevState.currentQuestionIndex + 1,
-            numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1
-        }), () => {
-            if(this.state.nextQuestion === undefined){
-                this.end();
-            } else {
-                this.displayQuestions(
-                    this.state.questions, 
-                    this.state.currentQuestion, 
-                    this.state.nextQuestion, 
-                    this.state.previousQuestion);
-            }
-        })
+        setTimeout(() => {
+            this.setState(prevState => ({
+                wrongAnswers: prevState.wrongAnswers + 1,
+                currentQuestionIndex: prevState.currentQuestionIndex + 1,
+                numberOfAnsweredQuestions: prevState.numberOfAnsweredQuestions + 1,
+                answerMessage: "",
+                backgroundChange: "red"
+            }), () => {
+                if(this.state.nextQuestion === undefined){
+                    this.end();
+                } else {
+                    this.displayQuestions(
+                        this.state.questions, 
+                        this.state.currentQuestion, 
+                        this.state.nextQuestion, 
+                        this.state.previousQuestion);
+                }
+            })
+        }, 1500)
     }
     showOptions = () => {
         const options = Array.from(document.querySelectorAll(".option"));
@@ -216,7 +232,9 @@ class Play extends React.Component {
             option.style.visibility = "visible";
         });
         this.setState({
-            usedFiftyFifty: false
+            usedFiftyFifty: false,
+            optionDisabled: true,
+            backgroundChange: "#23758b"
         })
     }
     handleHints = () => {
@@ -233,7 +251,7 @@ class Play extends React.Component {
                 if(randomNumber !== indexOfAnswer && !this.state.previousRandomNumber.includes(randomNumber)){
                     options.forEach((option, index) => {
                         /* Sorts bug that removes option even though its already removed */
-                        if(option.style.visibility != "hidden"){
+                        if(option.style.visibility !== "hidden"){
                             if(index === randomNumber){
                                 option.style.visibility = "hidden";
                                 this.setState((prevState) => ({
@@ -329,6 +347,9 @@ class Play extends React.Component {
         if(playerStats.score === playerStats.numberOfQuestions){
             playerResult = "passed"
             successMessage = "Well done, you can now move on!"
+            this.setState({
+                showConfetti: "block"
+            })
         }
         this.setState({
             endScore: playerStats.score,
@@ -384,7 +405,9 @@ class Play extends React.Component {
             endScore: 0,
 
             showSummary: "none",
-            displayQuiz: "block"
+            displayQuiz: "block",
+
+            showConfetti: "none"
         });
         this.startTimer();
         setTimeout(() => {
@@ -507,8 +530,15 @@ class Play extends React.Component {
             <Helmet> <title> Quiz Page </title></Helmet>
 
                     <Home style = {{display: this.state.displayHome}}>
-                        <h1> Welcome to the quiz </h1>
-                        <button onClick = {this.startQuiz}>Play</button> 
+                        <div className = "content-container">
+                            <h1> Quiz </h1>
+                            <p> Ready to test your knowledge? </p>
+                            <div className = "button-container">
+                                <button onClick = {this.startQuiz}>Play</button> 
+                            </div>
+                        </div>
+                        <img src = {QuizImage1} className = "top-quiz-wave" />
+                        <img src = {QuizImage2} className = "bottom-quiz-wave"/>
                     </Home>
 
 
@@ -522,39 +552,43 @@ class Play extends React.Component {
                         </DialogContainer>
 
                         <OverlayContainer style = {{display: this.state.showOverlay }}/>
-                        <Container style = {{display: this.state.showContainer}}>
+                        <Container style = {{display: this.state.showContainer, background: this.state.backgroundChange}}>
                             <span onClick = {this.quitQuiz} className = "quitQuiz" > X </span>
-                            <h1> Quiz Mode </h1>
-                            <LifelineContainer>
-                                <p>
-                                    <span onClick = {this.handleHints} className = "lifeline help-icon">
-                                        <FontAwesomeIcon icon = "lightbulb"/>
+                            <div className = "main-content-container">
+                                <p className = "numberOfQuestionsContainer">
+                                    <span className = "qNumber">
+                                        Question {currentQuestionIndex + 1} of {numberOfQuestions}
                                     </span>
-                                    <span className = "lifelineNum">{hints}</span>
                                 </p>
-                                <p>
-                                    <span onClick = {this.handleFiftyFifty} className = "5050 help-icon">
-                                        <FontAwesomeIcon icon = "heart"/>
-                                    </span>
-                                    <span className = "lifelineNum">{fiftyFifty}</span>
-                                </p>
-                            </LifelineContainer>
-                            <LifelineContainer>
-                                <p>
-                                    <span style = {{float: "left"}} className = "qNumber">{currentQuestionIndex + 1} of {numberOfQuestions}</span>
-                                </p>
-                                <p>
-                                    <span className = "timer help-icon"><FontAwesomeIcon icon="hourglass" /></span>
-                                    <span className = "">{time.minutes}:{time.seconds}</span>
-                                </p>
-                            </LifelineContainer>
-                            <H5> {currentQuestion.question} </H5>
-                            <OptionsContainer>
-                                <p style = {{visibility: this.state.optionsShow }} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionA}</p>
-                                <p style = {{visibility: this.state.optionsShow }} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionB}</p>
-                                <p style = {{visibility: this.state.optionsShow }} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionC}</p>
-                                <p style = {{visibility: this.state.optionsShow }} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionD}</p>
-                            </OptionsContainer>
+                                <H5> {currentQuestion.question} </H5>
+                                <OptionsContainer>
+                                    <button disabled = {!this.state.optionDisabled} style = {{visibility: this.state.optionsShow}} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionA}</button>
+                                    <button disabled = {!this.state.optionDisabled} style = {{visibility: this.state.optionsShow }} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionB}</button>
+                                    <button disabled = {!this.state.optionDisabled} style = {{visibility: this.state.optionsShow }} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionC}</button>
+                                    <button disabled = {!this.state.optionDisabled} style = {{visibility: this.state.optionsShow }} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionD}</button>
+                                </OptionsContainer>
+                                <LifelineContainer>
+                                    <p onClick = {this.handleHints}>
+                                        <span className = "lifeline help-icon">
+                                            <FontAwesomeIcon icon = "lightbulb"/>
+                                        </span>
+                                        <span className = "lifelineNum">{hints}</span>
+                                    </p>
+                                    <p>
+                                        <span className = "timer help-icon"><FontAwesomeIcon icon="hourglass" /></span>
+                                        <span className = "">{time.minutes}:{time.seconds}</span>
+                                    </p>
+                                    <p onClick = {this.handleFiftyFifty}>
+                                        <span className = "5050 help-icon">
+                                            <FontAwesomeIcon icon = "heart"/>
+                                        </span>
+                                        <span className = "lifelineNum">{fiftyFifty}</span>
+                                    </p>
+                                </LifelineContainer>
+                            </div>
+                            <SuccessMessage>
+                                <h1> {this.state.answerMessage} </h1>
+                            </SuccessMessage>
                         </Container>
                     </div>
                     <div style = {{display: this.state.showSummary}}>
@@ -565,6 +599,7 @@ class Play extends React.Component {
                                 successMessage = {successMessage}
                                 playAgain = {this.resetQuiz}
                                 homeReturn = {this.returnHome}
+                                showConfetti = {this.state.showConfetti}
                             />
                     </div>
                 </React.Fragment>
@@ -572,32 +607,142 @@ class Play extends React.Component {
         }
     }
 
+
+/* HOME PAGE STYLES */ 
 const Home = styled.div`
     background: #23758b;
     height: 60vh;
     padding: 14px;
     color: white;
     position: relative;
-    h1{
-        font-size: 4.5em;
-    }
-    button{
-        border: none;
-        border-radius: 14px;
-        background: #43f443;
-        font-size: 2.4em;
-        padding: 20px 50px;
-        color: white;
-        transition: .4s all;
+    overflow: hidden;
+    .content-container{
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        &:hover{
-            background: #3be23b;
+        h1{
+            font-size: 4.5em;
+            font-weight: 800;
+            text-align: center;
+            font-family: sans-serif;
+            @media only screen and (max-width: 430px){
+                font-size: 7em;
+                font-weight: 800;
+            }
+            @media only screen and (max-width: 800px) and (min-width: 430px){
+                font-size: 8em
+            }
+            @media only screen and (max-width: 1400px) and (min-width: 800px){
+                font-size: 10em;
+            }
+            @media only screen and (min-width: 1400px) and (max-width: 2000px){
+                font-size: 12em;
+            }
+            @media only screen and (min-width: 2000px){
+                font-size: 14em;
+            }
+        }
+        p{
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            @media only screen and (max-width: 430px){
+                font-size: 1.1em;
+            }
+            @media only screen and (max-width: 800px) and (min-width: 430px){
+                font-size: 2em;
+            }
+            @media only screen and (max-width: 1400px) and (min-width: 800px){
+                font-size: 2.4em;
+            }
+            @media only scren and (min-width: 1400px) and (max-width: 2000px){
+                font-size: 3.2em;
+            }
+            @media only screen and (min-width: 2000px){
+                font-size: 4em;
+            }
+        }
+        .button-container{
+            width: 100%;
+            text-align: center;
+            button{
+                border: 4px solid white;
+                background: #3589a1;
+                border-radius: 8px;
+                font-size: 2.2em;
+                padding: 20px 50px;
+                color: white;
+                transition: .4s all;
+                font-weight: 600;
+                &:hover{
+                    background: #23758b;
+                }
+                @media only screen and (max-width: 430px){
+                    width: 100%;
+                }
+                @media only screen and (max-width: 800px) and (min-width: 430px){
+                    font-size: 2.5em;
+                    margin-top: 14px;   
+                }
+                @media only screen and (max-width: 1400px) and (min-width: 800px){
+                    font-size: 2.8em;
+                    margin-top: 30px;
+                }
+                @media only screen and (min-width: 1400px) and (max-width: 2000px){
+                    font-size: 3.6em;
+                    margin-top: 50px;
+                }
+                @media only screen and (min-width: 2000px){
+                    font-size: 4.8em;
+                    margin-top: 80px;
+                    padding: 60px 140px;
+                }
+            }
+        }
+        @media only screen and (max-width: 1400px) and (min-width: 430px){
+            width: 100%;
         }
     }
+    .top-quiz-wave{
+        position: absolute;
+        top: -5%;
+        right: 0;
+        width: 500px;
+        @media only screen and (max-width: 1400px) and (min-width: 800px){
+            width: 700px;
+        }
+        @media only screen and (min-width: 1400px) and (max-width: 2000px){
+            width: 850px;
+        }
+        @media only screen and (min-width: 2000px){
+            width: 1200px;
+        }
+    }
+    .bottom-quiz-wave{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 250px;
+        @media only screen and (max-width: 1400px) and (min-width: 800px){
+            width: 350px;
+        }
+        @media only screen and (min-width: 1400px) and (max-width: 2000px){
+            width: 500px;
+        }
+        @media only screen and (min-width: 2000px){
+            width: 750px;
+        }
+    }
+    @media only screen and (max-width: 430px){
+        height: 100vh;
+    }
+    @media only screen and (max-width: 3000px) and (min-width: 430px){
+        height: 100vh;
+    }
 `
+
+/* MAIN QUIZ STYLES */
 const Container = styled.div`
     width: 97.15%;
     padding: 14px;
@@ -605,18 +750,104 @@ const Container = styled.div`
     background: #23758b;
     color: white;
     height: 60vh;
+    .main-content-container{
+        top: 30%;
+        position: absolute;
+        transform: translateY(-30%);
+        @media only screen and (max-width: 574px){
+            width: 100%;
+        }
+        @media only screen and (max-width: 800px) and  (min-width: 574px){
+            left: 50%;
+            top: 44%;
+            transform: translate(-50%, -50%);
+            width: 94%;
+        }
+        @media only screen and (max-width: 1050px) and (min-width: 800px){
+            left: 50%;
+            top: 44%;
+            transform: translate(-50%, -50%);
+            width: 84%;
+        }
+        @media only screen and (min-width: 1050px) and (max-width: 1500px){
+            width: 84%;
+            left: 50%;
+            top: 44%;
+            transform: translate(-50%, -50%);
+        }
+        @media only screen and (min-width: 1500px) and (max-width: 2000px){
+            top: 40%;
+            left: 50%;
+            width: 75%;
+            transform: translate(-50%, -50%);
+        }
+        @media only screen and (min-width: 2000px){
+            top: 40%;
+            left: 50%;
+            width: 68%;
+            transform: translate(-50%, -50%);
+        }
+    }
     .quitQuiz{
         font-weight: 800;
         color: white;
         position: absolute;
-        font-size: 2.5em;
+        top: 12px;
+        left: 12px;
+        font-size: 1.7em;
         cursor: pointer;
+        @media only screen and (max-width: 800px) and (min-width: 574px){
+            font-size: 2.2em;
+            top: 15px;
+            left: 15px;
+        }
+        @media only screen and (max-width: 1500px) and (min-width: 800px){
+            top: 30px;
+            left: 30px;
+            font-size: 3em;
+        }
+        @media only screen and (min-width: 1500px) and (max-width: 2000px){
+            top: 40px;
+            left: 40px;
+            font-size: 3.4em;
+        }
+        @media only screen and (min-width: 2000px){
+            top: 60px;
+            left: 60px;
+            font-size: 5em;
+        }
     }
     h1{ 
         text-align: center;
         font-weight: 400;
         font-size: 6em;
         color: white;
+    }
+    .numberOfQuestionsContainer{
+        text-align: center;
+        font-size: 1em;
+        font-weight: 100;
+        .qNumber{
+            color: white;
+            font-weight: 100;
+            @media only screen and (max-width: 1050px) and (min-width: 574px){
+                font-size: 1.6em;
+            }
+            @media only screen and (max-width: 1500px) and (min-width: 1050px){
+                font-size: 2em;
+            }
+            @media only screen and (min-width: 1500px) and (max-width: 2000px){
+                font-size: 2.2em;
+            }
+            @media only screen and (min-width: 2000px){
+                font-size: 3.4em;
+            }
+        }
+    }
+    @media only screen and (max-width: 7000px){
+        height: 100vh;
+        width: 100%;
+        padding: 0;
     }
 `
 const OverlayContainer = styled.div`
@@ -625,15 +856,17 @@ const OverlayContainer = styled.div`
     left: 0;
     height: 100%;
     width: 100%;
-    opacity: 0.2;
+    opacity: 0.35;
     background: black;
+    z-index: 6665;
+    transition: .6s all;
     display: none;
 `
 const DialogContainer = styled.div`
     transform: translate(-50%,-50%);
     position: absolute;
     width: 30%;
-    height: 30%;
+    padding: 40px 20px;
     background: white;
     color: black;
     top: 50%;
@@ -641,10 +874,23 @@ const DialogContainer = styled.div`
     text-align: center;
     z-index: 6666;
     border-radius: 10px;
-    padding: 10px;
     h1{
-        font-size: 1.2em;
+        font-size: 1.4em;
         color: black;
+        font-weight: 600;
+        font-family: sans-serif;
+        @media only screen and (max-width: 800px) and (min-width: 430px){
+            font-size: 1.6em
+        }
+        @media only screen and (min-width: 800px) and (max-width: 1100px){
+            font-size: 1.8em;
+        }
+        @media only screen and (min-width: 1100px) and (max-width: 2000px){
+            font-size: 2.2em;
+        }
+        @media only screen and (min-width: 2000px){
+            font-size: 2.8em;
+        }
     }
     button{
         width: 35%;
@@ -653,6 +899,35 @@ const DialogContainer = styled.div`
         border: none;
         padding: 10px;
         cursor: pointer;
+        background: #e8e8e8;
+        font-size: 1.1em;
+        @media only screen and (max-width: 110px) and (min-width: 430px){
+            font-size: 1.2em;
+            width: 40%;
+            padding: 16px;
+        }
+        @media only screen and (min-width: 1100px) and (max-width: 2000px){
+            font-size: 1.4em;
+        }
+        @media only screen and (min-width: 2000px){
+            font-size: 1.7em;
+            padding: 20px;
+        }
+    }
+    @media only screen and (max-width: 430px){
+        width: 80%;
+    }
+    @media only screen and (max-width: 800px) and (min-width: 430px){
+        width: 60%;
+    }
+    @media only screen and (min-width: 800px) and (max-width: 1100px){
+        width: 48%;
+    }
+    @media only screen and (min-width: 1100px) and (max-width: 2000px){
+        width: 40%;
+    }
+    @media only screen and (min-width: 2000px){
+        width: 35%;
     }
 `
 const LifelineContainer = styled.div`
@@ -661,9 +936,28 @@ const LifelineContainer = styled.div`
     width: 90%;
     margin: 0 auto;
     color: white;
+    margin-top: 30px;
     p{
+        padding: 14px 20px;
+        position: relative;
+        text-align: center;
+        background: rgba(71,187,230,0.6);
+        margin: 0 8px;
+        border-radius: 6px;
+        // box-shadow: 2px 4px 6px 0px black;
         span{
             color: white;
+            &:nth-child(1){
+                @media only screen and (max-width: 1050px) and (min-width: 574px){
+                    margin-right: 8px;
+                }
+                @media only screen and (max-width: 1500px) and (min-width: 1050px){
+                    margin-right: 10px;
+                }
+            }
+            @media only screen and (max-width: 1500px) and (min-width: 1050px){
+                font-size: 1.6em;
+            }
         }
         .help-icon{
             cursor: pointer;
@@ -673,29 +967,116 @@ const LifelineContainer = styled.div`
                 color: rgba(185, 236, 255, 1)
             }
         }
+        &:nth-child(1){
+            transition: .3s all;
+            &:active{
+                transform: scale(1.2)
+            }
+        }
+        &:nth-child(2){
+            flex-grow: 1.5;
+            @media only screen and (max-width: 800px) and (min-width: 430px){
+                flex-grow: 0.8;
+            }
+            @media only screen and (max-width: 1050px) and (min-width: 800px){
+                flex-grow: 0.8;
+            }
+            @media only screen and (min-width: 1050px) and (max-width: 1500px){
+                flex-grow: 0.6;
+            }
+            @media only screen and (min-width: 1500px) and (max-width: 2000px){
+                flex-grow: 0.85;
+            }
+            @media only screen and (min-width: 2000px){
+                flex-grow: 0.7;
+            }
+        }
+        &:nth-child(3){
+            transition: .3s all;
+            &:active{
+                transform: scale(1.2)
+            }
+        }
+        @media only screen and (max-width: 1050px) and (min-width: 574px){
+            font-size: 1.2em;
+            padding: 20px 16px;
+        }
+        @media only screen and (max-width: 1500px) and (min-width: 1050px){
+            padding: 25px 40px;
+            border-radius: 16px;
+            font-size: 1.2em;
+        }
+        @media only screen and (min-width: 1500px) and (max-width: 2000px){
+            font-size: 1.8em;
+            padding: 30px 50px;
+            border-radius: 20px;
+        }
+        @media only screen and (min-width: 2000px){
+            font-size: 3em;
+            padding: 50px 80px;
+            border-radius: 12px; 
+        }
     }
     .lifeline{
         position: relative;
         top: -3px;
     }
+    @media only screen and (max-width: 800px) and (min-width: 574px){
+        width: 80%;
+    }
+    @media only screen and (max-width: 1050px) and (min-width: 800px){
+        margin-top: 60px;
+        width: 100%;
+    }
+    @media only screen and (min-width: 1050px) and (max-width: 1500px){
+        margin-top: 100px;
+        width: 100%;
+    }
+    @media only screen and (min-width: 1500px) and (max-width: 2000px){
+        width: 100%;
+        margin-top: 120px;
+    }
+    @media only screen and (min-width: 2000px){
+        width: 66%;
+        margin-top: 160px;
+    }
 `
 const H5 = styled.h5`
-    font-size: 1.5em;
+    font-size: 2em;
     margin-bottom: 20px;
-    line-height: 1.5em;
+    line-height: 1.35em;
     text-align: center;
+    padding: 0 20px;
     color: white;
+    @media only screen and (max-width: 800px) and (min-width: 574px){
+        font-size: 2.8em;
+    }
+    @media only screen and (max-width: 1050px) and (min-width: 800px){
+        font-size: 2.6em;
+    }
+    @media only screen and (min-width: 1050px) and (max-width: 1500px){
+        font-size: 3.4em;   
+    }
+    @media only screen and (min-width: 1500px) and (max-width: 2000px){
+        font-size: 4em;
+        margin-top: 20px;
+    }
+    @media only screen and (min-width: 2000px){
+        font-size: 6.4em;
+        margin-top: 35px;
+    }
 `
 const OptionsContainer = styled.div`
     display: inline-block;
-    width: 70%;
+    width: 85%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     margin: 0 auto;
     .option{
         background: rgba(71, 187, 230, 0.6);
-        border-radius: 20px;
+        border: none;
+        border-radius: 4px;
         display: inline-block;
         width: 90%;
         text-align: center;
@@ -705,43 +1086,82 @@ const OptionsContainer = styled.div`
         padding: 10px;
         transition: .3s linear all;
         transition: .3s all;
+        font-size: 1.4em;
         &:hover{
             background: rgba(71, 187, 230, 1);
         }
+        @media only screen and (max-width: 1050px) and (min-width: 574px){
+            padding: 10px;
+            font-size: 1.4em;
+        }
+        @media only screen and (min-width: 1050px) and (max-width: 1500px){
+            padding: 20px;
+            font-size: 1.75em;
+        }
+        @media only screen and (min-width: 1500px) and (max-width: 2000px){
+            font-size: 2.1em;
+            padding: 30px;
+        }
+        @media only screen and (min-width: 2000px){
+            font-size: 4em;
+            padding: 70px;
+        }
+    }
+    @media only screen and (max-width: 574px){
+        display: block;
+        text-align: center;
+    }
+    @media only screen and (max-width: 800px) and (min-width: 574px){
+        width: 100%;
+    }
+    @media only screen and (max-width: 1500px) and (min-width: 800px){
+        width: 100%;
+        grid-template-rows: repeat(2, 50%);
+        grid-gap: 20px;
+        margin-top: 40px;
+    }
+    @media only screen and (min-width: 1500px) and (max-width: 2000px){
+        width: 80%;
+        grid-gap: 20px;
+        margin-top: 50px;
+    }
+    @media only screen and (min-width: 2000px){
+        grid-gap: 60px;
+        margin-top: 60px;
     }
 `
-const ButtonContainer = styled.div`
-    display: flex;
-    justify-content: flex-start;
-    margin: 0 auto 10px auto;
-    cursor: pointer;
-    padding: 10px;
-    width: 80%;
-    button{
-        border: none;
-        color: white;
-        cursor: pointer;
-        margin-right: 14px;
-        padding: 6px 8px;
-        transition: .2s linear all;
-        &:first-child{
-            background: rgba(71, 187, 230, 0.85);
-            &:hover{
-                background: rgba(71, 187, 230, 1);
-            }
+const SuccessMessage = styled.div`
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    height: 10vh;
+    h1{
+        font-size: 3.2em;
+        font-weight: 800;
+        @media only screen and (max-width: 800px) and (min-width: 574px){
+            font-size: 4.4em;
         }
-        &:nth-child(2){
-            background: rgba(59, 255, 95, 0.85);
-            &:hover{
-                background: rgba(59, 255, 95, 1);
-            }
+        @media only screen and (max-width: 1500px) and (min-width: 800px){
+            font-size: 5em;
         }
-        &:nth-child(3){
-            background: rgba(255, 71, 71, 0.85);
-            &:hover{
-                background: rgba(255, 71, 71, 1)
-            }
+        @media only screen and (min-width: 1500px) and (max-width: 2000px){
+            font-size: 6em;
         }
+        @media only screen and (min-width: 2000px){
+            font-size: 10em;
+        }
+    }
+    @media only screen and (max-width: 800px) and (min-width: 574px){
+        bottom: 50px;
+    }
+    @media only screen and (max-width: 1500px) and (min-width: 800px){
+        bottom: 60px;
+    }
+    @media only screen and (min-width: 1500px) and (max-width: 2000px){
+        bottom: 80px;
+    }
+    @media only screen and (min-width: 2000px){
+        bottom: 140px;
     }
 `
 export default Play;

@@ -12,12 +12,12 @@ class Banner extends React.Component {
         return (
             <HalfwayBanner>
                 {!!this.props.bannerOne && this.props.bannerOne.map((banner) =>
-                    <div style = {{backgroundImage: "url(" +  `${banner.image}` + ")"}} key = {banner.id}>
+                    <div style = {{backgroundImage: `url(${banner.image})`}} key = {banner.id}>
                         <p> {banner.text} </p>
                     </div>
                 )}
                 {!!this.props.bannerTwo && this.props.bannerTwo.map((banner) =>
-                    <div style = {{backgroundImage: "url(" +  `${banner.image}` + ")"}}key = {banner.id}>
+                    <div style = {{backgroundImage: `url(${banner.image})`}}key = {banner.id}>
                         <p> {banner.text} </p>
                     </div>
                 )}

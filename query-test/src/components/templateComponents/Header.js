@@ -1,6 +1,5 @@
 import React  from "react";
 import styled from "styled-components";
-import Transition from "react-transition-group";
 
 class HeaderComp extends React.Component {
     constructor(props){
