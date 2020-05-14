@@ -41,6 +41,12 @@ class Confetti extends React.Component {
 
     return realFinalColour;
   }
+  randomWordGenerator = (word1, word2, word3, word4, word5) => {
+    let arr = [word1, word2, word3, word4, word5]
+    let random = arr[Math.floor(Math.random() * arr.length)];
+
+    return random;
+  }
   componentDidMount(){
     this.setState({
       width: window.innerWidth + "px"
@@ -56,26 +62,39 @@ class Confetti extends React.Component {
     let topAtt2;
     let confettiNumber;
 
-    if(this.state.width >= "430px" && this.state.width <= "800px"){
-      leftAtt1 = -800;
-      leftAtt2 = 1000;
-      topAtt1 = -140;
-      topAtt2 = 240;
-      confettiNumber = 400;
-    } else if (this.state.width < "800px") {
+    if(this.state.width >= "330px" && this.state.width <= "800px"){
+      leftAtt1 = -500;
+      leftAtt2 = 700;
+      topAtt1 = -340;
+      topAtt2 = -40;
+      confettiNumber = 100;
+    } else if (this.state.width >= "800px" && this.state.width <= "1400px") {
       leftAtt1 = -1400;
       leftAtt2 = 1600;
-      topAtt1 = -440;
-      topAtt2 = 440;
+      topAtt1 = -340;
+      topAtt2 = 840;
       confettiNumber = 360;
+    } else if (this.state.width < "1400px") {
+      leftAtt1 = -1200;
+      leftAtt2 = 1800;
+      topAtt1 = -340;
+      topAtt2 = 1040;
+      confettiNumber = 380;
     } else {
       leftAtt1 = 50;
       leftAtt2 = 500;
       topAtt1 = 0;
       topAtt2 = 50;
-      confettiNumber = 100
+      confettiNumber = 400
     }
-    console.log(leftAtt1);
+
+    // let randomTiming = ["linear", "ease", "ease-in", "ease-out", "ease-in-out"];
+
+    let randomTiming = Math.floor(this.randomNumberGenerator(0, 5));
+    let randomTimingFunction = ""
+
+    console.log(randomTiming)
+
     for(let i = 0; i < confettiNumber; i++){
       confettiItems.push(
         <FallingConfetti
@@ -86,7 +105,9 @@ class Confetti extends React.Component {
             left: `${this.randomNumberGenerator(leftAtt1, leftAtt2)}px`,
             top: `${this.randomNumberGenerator(topAtt1, topAtt2)}px`,
             background: this.randomColourGenerator(),
-            animation: `falling ${this.randomNumberGenerator(2,4)}s linear infinite`
+            animationTimingFunction: "linear",
+            animationIterationCount: "infinite",
+            animationDuration: `${this.randomNumberGenerator(1.8, 7.5)}s`,
           }}
         />
       )
@@ -96,34 +117,32 @@ class Confetti extends React.Component {
         <div>
           {confettiItems}
         </div>
-        <FallingConfetti/>
+        {/* <FallingConfetti transY1 = "100px"
+        /> */}
       </div>
     )
   }
 }
-
 const FallingConfetti = styled.div`
-  height: 8px;
-  width: 12px;
- 
   @keyframes falling {
     0%{
-      transform: translateY(0) translateX(0) scaleX(1) scaleY(1) rotate(0deg)
+      transform: translateY(0) translateX(0) scaleX(0) scaleY(0) rotate(0);
     }
     25%{
-      transform: translateY(50px) translateX(-20px) scaleX(0) scaleY(0) rotate(20deg)
-
+      transform: translateY(130px) translateX(-50px) scaleX(-1) scaleY(-1) rotate(40deg);
     }
     50%{
-      transform: translateY(100px) translateX(-40px) scaleX(-1) scaleY(-1) rotate(40deg)
+      transform: translateY(260px) translateX(-100px) scaleX(0) scaleY(0) rotate(60deg);
     }
     75%{
-      transform: translateY(150px) translateX(-60px) scaleX(1) scaleY(1) rotate(60deg)
- 
+      transform: translateY(390px) translateX(-150px) scaleX(1) scaleY(1) rotate(80deg)
     }
     100%{
-      transform: translateY(200px) translateX(-80px) scaleX(-1) scaleY(-1) rotate(80deg)
+      transform: translateY(520px) translateX(-200px) scaleX(-1) scaleY(-1) rotate(100deg);
     }
   }
+  height: 4px;
+  width: 12px;
+  animation-name: falling;
 `
 export default Confetti;

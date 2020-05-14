@@ -38,22 +38,24 @@ class Play extends React.Component {
             initComplete: false,
 
             showQuestions: "block",
-            showSummary: "none",
+            showSummary: " ",
             showDialog: "none",
             showOverlay: "none",
 
             returnHome: false,
-            showContainer: "block",
 
             displaySummary: false,
-            displayQuiz: "none",
-            displayHome: "block",
+            displayQuiz: "translateX(-100%) scale(0)",
+            slideOutHome: "",
 
             answerMessage: "",
             showConfetti: "none",
             optionDisabled: true,
 
             backgroundChange: "#23758b",
+
+            homeDissapear: "",
+            homeAppear: ""
         }
 
         this.interval = null;
@@ -116,9 +118,9 @@ class Play extends React.Component {
                 });
                 this.showOptions();
             }
-            if(this.state.showSummary !== "none"){
+            if(this.state.showSummary !== "dissapear 1.2s linear forwards"){
                 this.setState({
-                    showSummary: "none"
+                    showSummary: "dissapear 1.2s linear forwards"
                 })
             }
         }
@@ -128,12 +130,12 @@ class Play extends React.Component {
         if(this.props.questions === undefined){
             setTimeout(() => {
                 this.setState({
-                    displayHome: "none"
+                    homeAppear: "dissapear 1s linear forwards"
                 });
             },100)
          } else {
             this.setState({
-                displayHome: "block"
+                homeAppear: "appear 1s linear forwards"
             });
          }
     }
@@ -347,9 +349,11 @@ class Play extends React.Component {
         if(playerStats.score === playerStats.numberOfQuestions){
             playerResult = "passed"
             successMessage = "Well done, you can now move on!"
-            this.setState({
-                showConfetti: "block"
-            })
+            setTimeout(() => {
+                this.setState({
+                    showConfetti: "block"
+                });
+            }, 2400)
         }
         this.setState({
             endScore: playerStats.score,
@@ -374,14 +378,14 @@ class Play extends React.Component {
                 hints: 0,
                 fiftyFifty: 0,
 
-                showSummary: "block",
-                displayQuiz: "none"
+                showSummary: "appear 1.2s linear forwards",
+                displayQuiz: "translateX(-100%) scale(0)"
             });
             clearInterval(this.interval);
             console.log(this.state);
         }, 1000)
     }
-    resetQuiz = () => {
+    resetQuiz = () => { 
         clearInterval(this.interval);
         this.showOptions();
         this.setState({
@@ -404,8 +408,8 @@ class Play extends React.Component {
             score: 0,
             endScore: 0,
 
-            showSummary: "none",
-            displayQuiz: "block",
+            showSummary: "dissapear 1.2s linear forwards",
+            displayQuiz: "translateX(0) scale(1)",
 
             showConfetti: "none"
         });
@@ -428,15 +432,9 @@ class Play extends React.Component {
         this.setState({
             showDialog: "none",
             showOverlay: "none",
-            displayHome: "block",
-            displayQuiz: "none"
+            homeAppear: "appear 1s linear forwards",
+            displayQuiz: "translateX(0) scale(1)"
         });
-        // this.setState({
-        //     showDialog: this.props.showDialog,
-        //     showOverlay: this.props.showOverlay,
-        //     displayHome: this.props.showHome,
-        //     displayQuiz: this.props.showQuiz
-        // })
     }
     resumeQuiz = () => {
         console.log("pause state", this.state.time.seconds)
@@ -477,19 +475,11 @@ class Play extends React.Component {
             }
         }, 1000);
     }
-    goBack = () => {
-        console.log("GONE BACK")
-        this.setState({
-            showContainer: "none"
-        });
-
-        // NEED SOMETHING HERE THAT ENDS THE QUIZ SO IT CAN BE RESTARTED FROM HOME
-    }
     startQuiz = () => {
         setTimeout(() => {
             this.setState({
-                displayQuiz: "block",
-                displayHome: "none"
+                displayQuiz: "translateX(0) scale(1)",
+                homeAppear: "dissapear 1s linear forwards"
             }); 
         }, 800);
         this.startGame();
@@ -498,15 +488,13 @@ class Play extends React.Component {
             hints: 5,
             fiftyFifty: 2
         });
-        console.log("fuck this", this.state);
         if(this.state.currentQuestionIndex !== 0){
             this.resetQuiz();
         }
     }
     returnHome = () => {
         this.setState({
-            showSummary: "none",
-            displayHome: "block"
+            homeAppear: "appear 1s linear forwards"
         })
     }
     render(){
@@ -528,8 +516,8 @@ class Play extends React.Component {
             <audio ref = {this.correctSound} src = {correctSound}></audio>
             <audio ref = {this.wrongSound} src = {incorrectSound}></audio>
             <Helmet> <title> Quiz Page </title></Helmet>
-
-                    <Home style = {{display: this.state.displayHome}}>
+                <ContentWrapper>
+                    <Home style = {{animation: this.state.homeAppear}} >
                         <div className = "content-container">
                             <h1> Quiz </h1>
                             <p> Ready to test your knowledge? </p>
@@ -540,82 +528,94 @@ class Play extends React.Component {
                         <img src = {QuizImage1} className = "top-quiz-wave" />
                         <img src = {QuizImage2} className = "bottom-quiz-wave"/>
                     </Home>
+                    <QuizContainer style = {{transform: this.state.displayQuiz }}>
+                        <div style = {{position: "relative"}}>
+                            <DialogContainer style = {{display: this.state.showDialog}}>
+                                <h1> Are you sure you want to quit the quiz? </h1>
+                                <button onClick = {this.exitQuiz}> Yes </button>
+                                <button onClick = {this.resumeQuiz}> No </button>
+                            </DialogContainer>
 
-
-
-                    <div style = {{display: this.state.displayQuiz, position: "relative"}}>
-
-                        <DialogContainer style = {{display: this.state.showDialog}}>
-                            <h1> Are you sure you want to quit the quiz? </h1>
-                            <button onClick = {this.exitQuiz}> Yes </button>
-                            <button onClick = {this.resumeQuiz}> No </button>
-                        </DialogContainer>
-
-                        <OverlayContainer style = {{display: this.state.showOverlay }}/>
-                        <Container style = {{display: this.state.showContainer, background: this.state.backgroundChange}}>
-                            <span onClick = {this.quitQuiz} className = "quitQuiz" > X </span>
-                            <div className = "main-content-container">
-                                <p className = "numberOfQuestionsContainer">
-                                    <span className = "qNumber">
-                                        Question {currentQuestionIndex + 1} of {numberOfQuestions}
-                                    </span>
-                                </p>
-                                <H5> {currentQuestion.question} </H5>
-                                <OptionsContainer>
-                                    <button disabled = {!this.state.optionDisabled} style = {{visibility: this.state.optionsShow}} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionA}</button>
-                                    <button disabled = {!this.state.optionDisabled} style = {{visibility: this.state.optionsShow }} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionB}</button>
-                                    <button disabled = {!this.state.optionDisabled} style = {{visibility: this.state.optionsShow }} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionC}</button>
-                                    <button disabled = {!this.state.optionDisabled} style = {{visibility: this.state.optionsShow }} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionD}</button>
-                                </OptionsContainer>
-                                <LifelineContainer>
-                                    <p onClick = {this.handleHints}>
-                                        <span className = "lifeline help-icon">
-                                            <FontAwesomeIcon icon = "lightbulb"/>
+                            <OverlayContainer style = {{display: this.state.showOverlay }}/>
+                            <Container style = {{background: this.state.backgroundChange}}>
+                                <span onClick = {this.quitQuiz} className = "quitQuiz" > X </span>
+                                <div className = "main-content-container">
+                                    <p className = "numberOfQuestionsContainer">
+                                        <span className = "qNumber">
+                                            Question {currentQuestionIndex + 1} of {numberOfQuestions}
                                         </span>
-                                        <span className = "lifelineNum">{hints}</span>
                                     </p>
-                                    <p>
-                                        <span className = "timer help-icon"><FontAwesomeIcon icon="hourglass" /></span>
-                                        <span className = "">{time.minutes}:{time.seconds}</span>
-                                    </p>
-                                    <p onClick = {this.handleFiftyFifty}>
-                                        <span className = "5050 help-icon">
-                                            <FontAwesomeIcon icon = "heart"/>
-                                        </span>
-                                        <span className = "lifelineNum">{fiftyFifty}</span>
-                                    </p>
-                                </LifelineContainer>
+                                    <H5> {currentQuestion.question} </H5>
+                                    <OptionsContainer>
+                                        <button disabled = {!this.state.optionDisabled} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionA}</button>
+                                        <button disabled = {!this.state.optionDisabled} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionB}</button>
+                                        <button disabled = {!this.state.optionDisabled} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionC}</button>
+                                        <button disabled = {!this.state.optionDisabled} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionD}</button>
+                                    </OptionsContainer>
+                                    <LifelineContainer>
+                                        <p onClick = {this.handleHints}>
+                                            <span className = "lifeline help-icon">
+                                                <FontAwesomeIcon icon = "lightbulb"/>
+                                            </span>
+                                            <span className = "lifelineNum">{hints}</span>
+                                        </p>
+                                        <p>
+                                            <span className = "timer help-icon"><FontAwesomeIcon icon="hourglass" /></span>
+                                            <span className = "">{time.minutes}:{time.seconds}</span>
+                                        </p>
+                                        <p onClick = {this.handleFiftyFifty}>
+                                            <span className = "5050 help-icon">
+                                                <FontAwesomeIcon icon = "heart"/>
+                                            </span>
+                                            <span className = "lifelineNum">{fiftyFifty}</span>
+                                        </p>
+                                    </LifelineContainer>
+                                </div>
+                                <SuccessMessage>
+                                    <h1> {this.state.answerMessage} </h1>
+                                </SuccessMessage>
+                            </Container>
                             </div>
-                            <SuccessMessage>
-                                <h1> {this.state.answerMessage} </h1>
-                            </SuccessMessage>
-                        </Container>
-                    </div>
-                    <div style = {{display: this.state.showSummary}}>
-                        <Summary
-                                score = {endScore}
-                                numOfQuestions = {endNumOfQuestions}
-                                success = {success}
-                                successMessage = {successMessage}
-                                playAgain = {this.resetQuiz}
-                                homeReturn = {this.returnHome}
-                                showConfetti = {this.state.showConfetti}
-                            />
-                    </div>
-                </React.Fragment>
-            )
-        }
+                        </QuizContainer>
+                        <SummaryContainer style = {{animation: this.state.showSummary}}>
+                            <Summary
+                                    score = {endScore}
+                                    numOfQuestions = {endNumOfQuestions}
+                                    success = {success}
+                                    successMessage = {successMessage}
+                                    playAgain = {this.resetQuiz}
+                                    homeReturn = {this.returnHome}
+                                    showConfetti = {this.state.showConfetti}
+                                />
+                        </SummaryContainer>
+                </ContentWrapper>
+            </React.Fragment>
+        )
     }
+}
 
-
+const ContentWrapper = styled.div`
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+`
 /* HOME PAGE STYLES */ 
 const Home = styled.div`
+    position: absolute;
+    width: 100%; 
+    left:0;
+    top: 0;
+    z-index: 3;
+
+
     background: #23758b;
     height: 60vh;
     padding: 14px;
     color: white;
     position: relative;
     overflow: hidden;
+    transition: 1.6s;
+
     .content-container{
         position: absolute;
         top: 50%;
@@ -743,6 +743,14 @@ const Home = styled.div`
 `
 
 /* MAIN QUIZ STYLES */
+const QuizContainer = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    transition: 1.2s all;
+`
 const Container = styled.div`
     width: 97.15%;
     padding: 14px;
@@ -1163,5 +1171,13 @@ const SuccessMessage = styled.div`
     @media only screen and (min-width: 2000px){
         bottom: 140px;
     }
+`
+
+const SummaryContainer = styled.div`
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
 `
 export default Play;
