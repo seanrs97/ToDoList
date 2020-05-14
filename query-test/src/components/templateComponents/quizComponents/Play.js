@@ -55,7 +55,9 @@ class Play extends React.Component {
             backgroundChange: "#23758b",
 
             homeDissapear: "",
-            homeAppear: ""
+            homeAppear: "",
+
+            questionDisplay: ""
         }
 
         this.interval = null;
@@ -177,11 +179,19 @@ class Play extends React.Component {
     }
     correctAnswer = () => {
         this.setState({
-            answerMessage: "Correct",
             optionDisabled: false,
-            backgroundChange: "#52b830"
+            backgroundChange: "#52b830",
+            questionDisplay: "translateX(120%)"
         });
         setTimeout(() => {
+            this.setState({
+                answerMessage: "Correct",
+            })
+        }, 320)
+        setTimeout(() => {
+            this.setState({
+                questionDisplay: "translateX(0)"
+            })
             this.setState(prevState => ({
                 score: prevState.score + 1,
                 correctAnswers: prevState.correctAnswers + 1,
@@ -199,16 +209,24 @@ class Play extends React.Component {
                         this.state.previousQuestion);
                 }
             })
-        }, 1500);
+        }, 1700);
     }
     incorrectAnswer = () => {
         navigator.vibrate(1000);
         this.setState({
-            answerMessage: "Incorrect",
             optionDisabled: false,
-            backgroundChange: "#f7554d"
+            backgroundChange: "#f7554d",
+            questionDisplay: "translateX(120%)"
         });
         setTimeout(() => {
+            this.setState({
+                answerMessage: "Incorrect",
+            })
+        }, 320)
+        setTimeout(() => {
+            this.setState({
+                questionDisplay: "translateX(0)"
+            })
             this.setState(prevState => ({
                 wrongAnswers: prevState.wrongAnswers + 1,
                 currentQuestionIndex: prevState.currentQuestionIndex + 1,
@@ -226,7 +244,7 @@ class Play extends React.Component {
                         this.state.previousQuestion);
                 }
             })
-        }, 1500)
+        }, 1700)
     }
     showOptions = () => {
         const options = Array.from(document.querySelectorAll(".option"));
@@ -516,7 +534,7 @@ class Play extends React.Component {
             <audio ref = {this.correctSound} src = {correctSound}></audio>
             <audio ref = {this.wrongSound} src = {incorrectSound}></audio>
             <Helmet> <title> Quiz Page </title></Helmet>
-                <ContentWrapper>
+                <ContentWrapper style = {{animation: this.state.homeAppear}}>
                     <Home style = {{animation: this.state.homeAppear}} >
                         <div className = "content-container">
                             <h1> Quiz </h1>
@@ -540,19 +558,19 @@ class Play extends React.Component {
                             <Container style = {{background: this.state.backgroundChange}}>
                                 <span onClick = {this.quitQuiz} className = "quitQuiz" > X </span>
                                 <div className = "main-content-container">
-                                    <p className = "numberOfQuestionsContainer">
+                                    <p style = {{transform: this.state.questionDisplay}} className = "numberOfQuestionsContainer">
                                         <span className = "qNumber">
                                             Question {currentQuestionIndex + 1} of {numberOfQuestions}
                                         </span>
                                     </p>
-                                    <H5> {currentQuestion.question} </H5>
-                                    <OptionsContainer>
+                                    <H5 style = {{transform: this.state.questionDisplay}}> {currentQuestion.question} </H5>
+                                    <OptionsContainer style = {{transform: this.state.questionDisplay}}>
                                         <button disabled = {!this.state.optionDisabled} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionA}</button>
                                         <button disabled = {!this.state.optionDisabled} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionB}</button>
                                         <button disabled = {!this.state.optionDisabled} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionC}</button>
                                         <button disabled = {!this.state.optionDisabled} onClick = {this.handleOptionClick} className = "option">{currentQuestion.optionD}</button>
                                     </OptionsContainer>
-                                    <LifelineContainer>
+                                    <LifelineContainer style = {{transform: this.state.questionDisplay}}>
                                         <p onClick = {this.handleHints}>
                                             <span className = "lifeline help-icon">
                                                 <FontAwesomeIcon icon = "lightbulb"/>
@@ -754,10 +772,12 @@ const QuizContainer = styled.div`
 const Container = styled.div`
     width: 97.15%;
     padding: 14px;
-    transition: .7s all;
+    transition: 1.2s all;
     background: #23758b;
     color: white;
     height: 60vh;
+    z-index: 100000;
+    position: relative;
     .main-content-container{
         top: 30%;
         position: absolute;
@@ -804,6 +824,7 @@ const Container = styled.div`
         left: 12px;
         font-size: 1.7em;
         cursor: pointer;
+        z-index:
         @media only screen and (max-width: 800px) and (min-width: 574px){
             font-size: 2.2em;
             top: 15px;
@@ -835,6 +856,7 @@ const Container = styled.div`
         text-align: center;
         font-size: 1em;
         font-weight: 100;
+        transition: 1s all;
         .qNumber{
             color: white;
             font-weight: 100;
@@ -942,6 +964,7 @@ const LifelineContainer = styled.div`
     display: flex;
     justify-content: space-between;
     width: 90%;
+    transition: 1s all;
     margin: 0 auto;
     color: white;
     margin-top: 30px;
@@ -1055,6 +1078,7 @@ const H5 = styled.h5`
     line-height: 1.35em;
     text-align: center;
     padding: 0 20px;
+    transition: 1s all;
     color: white;
     @media only screen and (max-width: 800px) and (min-width: 574px){
         font-size: 2.8em;
@@ -1076,6 +1100,7 @@ const H5 = styled.h5`
 `
 const OptionsContainer = styled.div`
     display: inline-block;
+    transition: 1s all;
     width: 85%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -1141,8 +1166,11 @@ const OptionsContainer = styled.div`
 const SuccessMessage = styled.div`
     width: 100%;
     position: absolute;
-    bottom: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     height: 10vh;
+    z-index: -100;
     h1{
         font-size: 3.2em;
         font-weight: 800;
