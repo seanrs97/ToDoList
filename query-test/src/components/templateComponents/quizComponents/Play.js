@@ -10,12 +10,16 @@ import QuizImage1 from "../../images/SVG/quiz-wave-1.svg";
 import QuizImage2 from "../../images/SVG/quiz-wave-2.svg";
 
 import Summary from "./Summary";
-import Confetti from "./Confetti";
+
+// This is where the majority of the quiz is being handled. Ideally it will be seperated into different components soon as this file is HUGE!
+
+// Past line 612 is just CSS styles
 
 class Play extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            // Quiz functionality states
             questions:  [],
             currentQuestion: {},
             nextQuestion: {},
@@ -35,28 +39,20 @@ class Play extends React.Component {
             previousRandomNumber: [],
             disableButtons: false,
             time: {},
-            initComplete: false,
 
+            // Show / Hide components and return states 
             showQuestions: "block",
             showSummary: " ",
             showDialog: "none",
             showOverlay: "none",
-
             returnHome: false,
-
-            displaySummary: false,
             displayQuiz: "translateX(-100%) scale(0)",
-            slideOutHome: "",
-
             answerMessage: "",
             showConfetti: "none",
             optionDisabled: true,
-
             backgroundChange: "#23758b",
-
-            homeDissapear: "",
             homeAppear: "",
-
+            doesQuizExist: "",
             questionDisplay: ""
         }
 
@@ -64,6 +60,8 @@ class Play extends React.Component {
         this.correctSound = React.createRef();
         this.wrongSound = React.createRef();
     }
+
+    // This method starts up the game and is called when the user selects the 'Play' button on the home page
     startGame = () => {
         let {currentQuestionIndex} = this.state;
         let questions;
@@ -72,7 +70,8 @@ class Play extends React.Component {
         let previousQuestion;
         let answer;
 
-
+        // IGNORE the first part of this IF statement, It's just lazy coding and needs to be changed
+        // The else basically displays the questions if they exist
         if(this.props.questions === undefined || this.props.questions === ""){
             questions = [
                 {
@@ -91,7 +90,8 @@ class Play extends React.Component {
             previousQuestion = this.props.questions[currentQuestionIndex - 1];
             answer = this.props.questions[currentQuestionIndex].answer;
         }
-
+        
+        // Sets the questions data to state, so they can be used throughout the rest of this component
         if(questions.length === 0 || questions === undefined || currentQuestion.length === 0 || currentQuestion === undefined){
             console.log("somethings gone wrong here")
         } else {
@@ -105,7 +105,8 @@ class Play extends React.Component {
             });
         }
     }
-    componentDidUpdate(prevProps, prevState){
+    // Used to constantly check if a quiz exists when state changes. I.e when the user goes to a new page.
+    componentDidUpdate(prevProps){
         if(prevProps.id !== this.props.id){
             this.checkIfQuizExists();
             this.exitQuiz();
@@ -127,23 +128,31 @@ class Play extends React.Component {
             }
         }
     }
+    
+    // Checks if JSON has questions data, if not then removes the quiz component from the page
     checkIfQuizExists = () => {
         // METHOD APPEARS TO WORK BUT PROBABLY DOES NOT < WILL LIKELY REQUIRE FURTHER TESTING!!!!
         if(this.props.questions === undefined){
             setTimeout(() => {
                 this.setState({
-                    homeAppear: "dissapear 1s linear forwards"
+                    homeAppear: "dissapear 1s linear forwards",
+                    doesQuizExist: "dissapear 1s linear forwards"
                 });
             },100)
          } else {
             this.setState({
-                homeAppear: "appear 1s linear forwards"
+                homeAppear: "appear 1s linear forwards",
+                doesQuizExist: "appear 1s linear forwards"
             });
          }
     }
+    
+    // Can't actually remember why this is here, but I'm keeping it just incase ....
     componentWillUnmount(){
         clearInterval(this.interval);
     }
+
+    // Displays the questions from the JSON file
     displayQuestions = (questions = this.state.questions, currentQuestion, nextQuestion, previousQuestion) => {
         let { currentQuestionIndex } = this.state;
 
@@ -164,6 +173,8 @@ class Play extends React.Component {
             });
         }
     }
+    
+    // Plays a sound for the users right and wrong answers. Just a nice feature more than anything
     handleOptionClick = (e) => {
         if(e.target.innerHTML.toLowerCase() === this.state.answer){
             setTimeout(() => {
@@ -177,11 +188,13 @@ class Play extends React.Component {
             this.incorrectAnswer();
         }
     }
+
+    // Handles the users answer if it is correct
     correctAnswer = () => {
         this.setState({
             optionDisabled: false,
             backgroundChange: "#52b830",
-            questionDisplay: "translateX(120%)"
+            questionDisplay: "translateX(160%)"
         });
         setTimeout(() => {
             this.setState({
@@ -211,12 +224,14 @@ class Play extends React.Component {
             })
         }, 1700);
     }
+
+    // Handles the users answer if it is incorrect
     incorrectAnswer = () => {
         navigator.vibrate(1000);
         this.setState({
             optionDisabled: false,
             backgroundChange: "#f7554d",
-            questionDisplay: "translateX(120%)"
+            questionDisplay: "translateX(160%)"
         });
         setTimeout(() => {
             this.setState({
@@ -257,6 +272,9 @@ class Play extends React.Component {
             backgroundChange: "#23758b"
         })
     }
+
+    // Handles the hints lifeline
+    // !!!!!!!!!!!!!!!!! IGNORE THIS < likely going to be scrapped soon !!!!!!!!!!!!!!!!
     handleHints = () => {
         if(this.state.hints > 0){
             const options = Array.from(document.querySelectorAll(".option"));
@@ -287,6 +305,8 @@ class Play extends React.Component {
             } 
         }
     }
+
+    // Starts the countdown Timer displayed in the Lifeline section of the quiz. Just a simple countdown clock.
     startTimer = () => {
         const countdownTime = Date.now() + 60000;
         this.interval = setInterval(() => {
@@ -315,6 +335,8 @@ class Play extends React.Component {
             }
         }, 1000);
     }
+
+    // Handles the 5050 Lifeline functionality
     handleFiftyFifty = () => {
         if(this.state.fiftyFifty > 0 && this.state.usedFiftyFifty === false){
             const options = document.querySelectorAll(".option");
@@ -350,6 +372,9 @@ class Play extends React.Component {
             }))
         }
     }
+
+    // This method is used when the quiz ends. It is used to determine the players results.
+    // This is likely where the user will recieve their XP / Badge
     end  = () => {
         const { state } = this;
         let playerResult = "failed";
@@ -403,6 +428,8 @@ class Play extends React.Component {
             console.log(this.state);
         }, 1000)
     }
+
+    // Restarts the quiz when the user selects the 'play again' button. Basically just resets all values to their original form.
     resetQuiz = () => { 
         clearInterval(this.interval);
         this.showOptions();
@@ -413,31 +440,24 @@ class Play extends React.Component {
             fiftyFifty: 2,
             wrongAnswers: 0,
             correctAnswers: 0,
-
             currentQuestion: this.state.questions[0],
             nextQuestion: this.state.questions[0 + 1],
             answer: this.state.questions[0].answer,
             previousQuestion: undefined,
-
             endNumOfQuestions: 0,
             endNumOfAnsweredQuestions: 0,
             success: "",
             successMessage: "",
             score: 0,
             endScore: 0,
-
             showSummary: "dissapear 1.2s linear forwards",
             displayQuiz: "translateX(0) scale(1)",
-
             showConfetti: "none"
         });
         this.startTimer();
-        setTimeout(() => {
-            console.log("new state", this.state)
-        }, 200)
     }
 
-
+    // Displays a dialog box to give the user an option to either exit the quiz or resume the quiz
     quitQuiz = () => {
         console.log("are you sure you want to quit this quiz?");
         this.setState({
@@ -446,6 +466,8 @@ class Play extends React.Component {
         });
         clearInterval(this.interval);
     }
+
+    // Used when the user selects 'yes' from the dialog box to quit the quiz and return home
     exitQuiz = () => {
         this.setState({
             showDialog: "none",
@@ -454,6 +476,8 @@ class Play extends React.Component {
             displayQuiz: "translateX(0) scale(1)"
         });
     }
+
+    // Used when the user selects 'no' from the dialog menu to resume the quiz
     resumeQuiz = () => {
         console.log("pause state", this.state.time.seconds)
         this.setState({
@@ -462,11 +486,8 @@ class Play extends React.Component {
         });
         const currentTime = this.state.time.seconds + "000";
         const resumeTime = parseInt(currentTime) ;
-        console.log(resumeTime)
 
         const countdownTime = Date.now() + resumeTime;
-
-        console.log("countdown time", countdownTime)
         this.interval = setInterval(() => {
             const now = new Date();
             const distance = countdownTime - now;
@@ -493,6 +514,8 @@ class Play extends React.Component {
             }
         }, 1000);
     }
+
+    // Used when the user selects the 'play' button from the home screen. Just displays the quiz component and runs the 'start game' method.
     startQuiz = () => {
         setTimeout(() => {
             this.setState({
@@ -510,11 +533,15 @@ class Play extends React.Component {
             this.resetQuiz();
         }
     }
+
+    // Return the user home from the summary page when they select the 'return' button
     returnHome = () => {
         this.setState({
             homeAppear: "appear 1s linear forwards"
         })
     }
+
+    // Renders the quiz into a html format
     render(){
         const {
             currentQuestion, 
@@ -534,13 +561,12 @@ class Play extends React.Component {
             <audio ref = {this.correctSound} src = {correctSound}></audio>
             <audio ref = {this.wrongSound} src = {incorrectSound}></audio>
             <Helmet> <title> Quiz Page </title></Helmet>
-                <ContentWrapper style = {{animation: this.state.homeAppear}}>
+                <ContentWrapper style = {{animation: this.state.doesQuizExist}}>
                     <Home style = {{animation: this.state.homeAppear}} >
                         <div className = "content-container">
                             <h1> Quiz </h1>
-                            <p> Ready to test your knowledge? </p>
                             <div className = "button-container">
-                                <button onClick = {this.startQuiz}>Play</button> 
+                                <button onClick = {this.startQuiz}>Start</button> 
                             </div>
                         </div>
                         <img src = {QuizImage1} className = "top-quiz-wave" />
@@ -548,13 +574,13 @@ class Play extends React.Component {
                     </Home>
                     <QuizContainer style = {{transform: this.state.displayQuiz }}>
                         <div style = {{position: "relative"}}>
-                            <DialogContainer style = {{display: this.state.showDialog}}>
+                            <DialogContainer style = {{display: this.state.showDialog, zIndex: "100000001"}}>
                                 <h1> Are you sure you want to quit the quiz? </h1>
                                 <button onClick = {this.exitQuiz}> Yes </button>
                                 <button onClick = {this.resumeQuiz}> No </button>
                             </DialogContainer>
 
-                            <OverlayContainer style = {{display: this.state.showOverlay }}/>
+                            <OverlayContainer style = {{display: this.state.showOverlay, zIndex: "100000000"}}/>
                             <Container style = {{background: this.state.backgroundChange}}>
                                 <span onClick = {this.quitQuiz} className = "quitQuiz" > X </span>
                                 <div className = "main-content-container">
@@ -643,7 +669,7 @@ const Home = styled.div`
             font-size: 4.5em;
             font-weight: 800;
             text-align: center;
-            font-family: sans-serif;
+            font-family: dosis;
             @media only screen and (max-width: 430px){
                 font-size: 7em;
                 font-weight: 800;
@@ -974,7 +1000,7 @@ const LifelineContainer = styled.div`
         text-align: center;
         background: rgba(71,187,230,0.6);
         margin: 0 8px;
-        border-radius: 6px;
+        border-radius: 4px;
         // box-shadow: 2px 4px 6px 0px black;
         span{
             color: white;
@@ -1034,18 +1060,16 @@ const LifelineContainer = styled.div`
         }
         @media only screen and (max-width: 1500px) and (min-width: 1050px){
             padding: 25px 40px;
-            border-radius: 16px;
+
             font-size: 1.2em;
         }
         @media only screen and (min-width: 1500px) and (max-width: 2000px){
             font-size: 1.8em;
             padding: 30px 50px;
-            border-radius: 20px;
         }
         @media only screen and (min-width: 2000px){
             font-size: 3em;
             padding: 50px 80px;
-            border-radius: 12px; 
         }
     }
     .lifeline{
@@ -1080,14 +1104,18 @@ const H5 = styled.h5`
     padding: 0 20px;
     transition: 1s all;
     color: white;
+    margin-top: 20px;
     @media only screen and (max-width: 800px) and (min-width: 574px){
         font-size: 2.8em;
+        margin-top: 30px;
     }
     @media only screen and (max-width: 1050px) and (min-width: 800px){
         font-size: 2.6em;
+        margin-top: 20px;
     }
     @media only screen and (min-width: 1050px) and (max-width: 1500px){
         font-size: 3.4em;   
+        margin-top: 20px;
     }
     @media only screen and (min-width: 1500px) and (max-width: 2000px){
         font-size: 4em;

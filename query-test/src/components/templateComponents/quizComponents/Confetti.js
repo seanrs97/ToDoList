@@ -1,6 +1,9 @@
 import React from 'react'
 import styled, {keyframes} from "styled-components";
 
+// Custom Confetti component. Bit buggy at the moment
+// Works by generating a bunch of small divs and gives them random properties i.e. height, width, rotate, transform etc. and then animates them using keyframes
+
 class Confetti extends React.Component {
   constructor(props){
     super(props);
@@ -62,24 +65,18 @@ class Confetti extends React.Component {
     let topAtt2;
     let confettiNumber;
 
-    if(this.state.width >= "330px" && this.state.width <= "800px"){
+    if(this.state.width >= "0px" && this.state.width <= "1200px"){
       leftAtt1 = -500;
       leftAtt2 = 700;
       topAtt1 = -340;
       topAtt2 = -40;
-      confettiNumber = 100;
-    } else if (this.state.width >= "800px" && this.state.width <= "1400px") {
-      leftAtt1 = -1400;
-      leftAtt2 = 1600;
+      confettiNumber = 160;
+    } else if (this.state.width >= "1200px") {
+      leftAtt1 = -1900;
+      leftAtt2 = 2200;
       topAtt1 = -340;
-      topAtt2 = 840;
-      confettiNumber = 360;
-    } else if (this.state.width < "1400px") {
-      leftAtt1 = -1200;
-      leftAtt2 = 1800;
-      topAtt1 = -340;
-      topAtt2 = 1040;
-      confettiNumber = 380;
+      topAtt2 = 1340;
+      confettiNumber = 400;
     } else {
       leftAtt1 = 50;
       leftAtt2 = 500;
@@ -87,13 +84,20 @@ class Confetti extends React.Component {
       topAtt2 = 50;
       confettiNumber = 400
     }
+    // if(this.state.width >= "770px" && this.state.width <= "1399px") { 
+    //   console.log("really nice job")
+    //   leftAtt1 = -1400;
+    //   leftAtt2 = 1600;
+    //   topAtt1 = -340;
+    //   topAtt2 = 840;
+    //   confettiNumber = 360;
+    //   console.log(leftAtt1)
+    // }
 
     // let randomTiming = ["linear", "ease", "ease-in", "ease-out", "ease-in-out"];
 
     let randomTiming = Math.floor(this.randomNumberGenerator(0, 5));
     let randomTimingFunction = ""
-
-    console.log(randomTiming)
 
     for(let i = 0; i < confettiNumber; i++){
       confettiItems.push(

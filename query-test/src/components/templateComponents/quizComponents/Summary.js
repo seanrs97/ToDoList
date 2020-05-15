@@ -5,6 +5,8 @@ import QuizImage2 from "../../images/SVG/quiz-wave-2.svg";
 
 import Confetti from "./Confetti";
 
+// This is where the User will find their results. This is mainly just a template page.
+// Data is being returned back to the Play component which populates the .props. e.g. this.props.playAgain utilises a method in Play.js to Restart the quiz
 
 class Summary extends React.Component {
     constructor(){

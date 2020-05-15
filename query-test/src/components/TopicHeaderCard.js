@@ -16,6 +16,9 @@ import NextSteps from "./templateComponents/NextSteps";
 
 import Play from "./templateComponents/quizComponents/Play";
 
+
+// Utilises all of the template components and populates them with the JSON data to dynamicaly create multiple pages.
+
 class CoreTopicsCard extends React.Component {
     constructor(props){
         super(props);
